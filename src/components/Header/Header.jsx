@@ -3,7 +3,7 @@ import { Fragment, useContext } from "react";
 import Button from "../UI/Button/Button";
 import "./Header.css"
 
-import AuthContext from "../store/auth-context";
+import AuthContext from "../Authentication/store/auth-context";
 
 const Header = () => {
 
@@ -21,7 +21,7 @@ const Header = () => {
                         {!authContext.isLoggedIn && (
                             <Fragment>
                                 <Button onClick={authContext.onLogin}>Log in</Button>
-                                <Button onClick={authContext.onSignup}>Sign Up</Button>
+                                <Button onClick={authContext.onSignup}>Sign up</Button>
                             </Fragment>
                             )
                         }
