@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 
-import QRField from "./components/QR-field/QRField";
-import QRFieldItem from "./components/QR-field/QRFieldItem";
 import Header from "./components/Header/Header";
-import Login from "./components/Authentication/Login/Login";
+import QrField from "./components/QrField/QrField";
+import SectionContainer from "./components/SectionContainer/SectionContainer";
+import Footer from "./components/Footer/Footer";
 
 import "./App.css"
 
@@ -13,9 +13,9 @@ const App = () => {
     return (
         <Fragment>
             <Header />
-            <Login />
-            <QRField />
-            <QRFieldItem />
+            <SectionContainer />
+            <QrField />
+            <Footer />
         </Fragment>
     )
 }

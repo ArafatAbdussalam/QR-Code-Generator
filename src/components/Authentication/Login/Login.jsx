@@ -1,7 +1,8 @@
-import React, { useState} from "react"
-import axios from "axios"
-import Button from "../UI/Button/Button"
+import React, { useState } from "react"
+import "./Login.css"
 
+
+import Button from "../UI/Button/Button"
 import useInput from "../../hooks/use-input"
 
 
@@ -11,6 +12,8 @@ const isEmail = (value) => value.includes("@")
 const Login = (props) => {
 
     const {onLogin} = props;
+
+    const [error, setError] = useState("")
 
     const {
         value: userEmailValue,
@@ -30,54 +33,52 @@ const Login = (props) => {
         reset: resetUserPassword
     } = useInput(isNotEmpty)
 
-    const loginValue = {
-        email: userEmailValue,
-        password: userPasswordValue,
-    }
-
     let formIsValid = false;
 
     if (userNameIsValid && userEmailIsValid && userPasswordIsValid) {
         formIsValid = true;
     }
 
-    const loginSubmitHandler = (event) => {
+    const loginSubmitHandler = async (event) => {
         event.preventDefault()
 
         if (!formIsValid) {
             return
         }
 
+        try {
 
-        // axios method
+            const response = await fetch("", {
+                method: "POST",
+                body: JSON.stringify({loginValue}),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
 
-        axios.post("/login", {
-            method: "POST",
-            body: JSON.stringify(value),
-            headers: {
-                "Content-Type": "application/json"
+            if (!response.ok) {
+                throw new Error("Request failed!")
             }
-        })
-        .then((response) => {})
-        .catch((error)  => {})
 
-        // fetch method
+            const data = await response.json()
 
-        // const response = fetch("/login", {
-        //     method: "POST",
-        //     body: JSON.stringify(value),
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // })
-        // response.json()
+            const id = ""
+
+            const loginValue = {
+                email: userEmailValue,
+                password: userPasswordValue,
+            }
+        
+            const {email: userEmail, password: userPassword} = loginValue
         
 
-        onLogin(loginValue)
+            onLogin(loginValue)
+        } catch (error) {
+            setError(error.message || "Something went wrong")
+        }
 
-        resetUserEmail()
-        resetUserPassword()
-
+        await resetUserEmail()
+        await resetUserPassword()
     }
 
 

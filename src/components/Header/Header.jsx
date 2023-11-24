@@ -2,8 +2,8 @@ import { Fragment, useContext } from "react";
 
 import Button from "../UI/Button/Button";
 import "./Header.css"
+import AuthContext from "../store/auth-context";
 
-import AuthContext from "../Authentication/store/auth-context";
 
 const Header = () => {
 
