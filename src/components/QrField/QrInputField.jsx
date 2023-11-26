@@ -4,12 +4,15 @@ import Button from "../UI/Button/Button"
 
 const QrInputField = (props) => {
 
-    const { onGenerateQrCode } = props
+    const {onGenerateQrCode} = props
+
+    const [error, setError] = useState(null)
+    // const [isGenerating, setIsGenerating] = useState(false)
 
     const isNotEmpty = (value) => value.trim() !== ""
 
     const {
-        value: WifiValue,
+        value: wifiValue,
         isValid: wifiValueIsValid,
         valueHasError: wifiValueHasError,
         valueChangeHandler: wifiValueChangeHandler,
@@ -17,15 +20,52 @@ const QrInputField = (props) => {
         reset: resetWifiValue
     } = useInput(isNotEmpty)
 
+    
+    const fieldValue = {
+        forWifi: wifiValue
+    }
+    
+    // const {wifi: forWifi} = fieldValue
 
     const generateQrCodeHandler = (event) => {
         event.preventDefault()
 
-        // axios method
+        setIsGenerating(true)
+        setError(null)
 
-        // onGenerateCode(value)
+        const generateQrCode = async (inputField) => {
+            
+            try {
+                const response = awaitfetch(
+                    "", {
+                        method: "POST",
+                        body: JSON.stringify({inputField}),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                )
 
-        resetWifiValue()
+                if (!response.ok) {
+                    throw new Error("Request failed")
+                }
+                
+                const data = await response.json()
+
+                // where do we have data.name from
+                const generatedId = data.name
+                // inputfield here is same as the one passed as param
+                const generatedCode = {id: generatedId, codeValue: inputField}
+
+                onGenerateQrCode(generatedCode)
+            } catch(error) {
+                SpeechSynthesisErrorEvent(error.message || "unable to generate QR code")
+            }
+
+        }
+
+        generateQrCode(fieldValue)
+
     }
 
 
@@ -35,14 +75,15 @@ const QrInputField = (props) => {
 
             <div className="wifi">
 
-            <input value={WifiValue} onChange={wifiValueChangeHandler} onBlur={wifiValueBlurHandler}/>
+            <input value={wifiValue} onChange={wifiValueChangeHandler} onBlur={wifiValueBlurHandler}/>
                 {/* <input value={networkName} onChange={networkNameChangeHandler} onBlur={wifiValueBlurHandler}/>
                 <input value={networkType} onChange={networkTypeChangeHandler} onBlur={wifiValueBlurHandler}/>
                 <input value={WifiPassword} onChange={wifiPasswordChangeHandler} onBlur={wifiValueBlurHandler}/> */}
             </div>
             
+            <Button type="submit">Generate</Button>
 
-            <Button type="submit" onClick={onGenerateQrCode}>Generate</Button>
+            {!error}
         </form>
     )
 }
