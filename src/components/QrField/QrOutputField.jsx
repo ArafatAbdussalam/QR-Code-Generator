@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {Fragment, useState} from "react";
 import Button from "../UI/Button/Button";
 
 const QrOutputField = (props) => {
 
-    const {onDownloadQrCode} = props;
+    const {onDownloadQrCode, imageSrc} = props;
 
     const [isDownloading, setIsDownloading] = useState(false)
     
@@ -20,9 +20,10 @@ const QrOutputField = (props) => {
 
 
     return (
-
-        
-        <Button onClick={downloadQrCodeHandler}>Download QR Code</Button>
+        <Fragment>
+            <img src={imageSrc} />
+            <Button onClick={downloadQrCodeHandler}>Download QR Code</Button>
+        </Fragment>
     )
 }
 
