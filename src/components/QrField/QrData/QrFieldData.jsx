@@ -4,7 +4,7 @@ const QrFieldData = [
         isAuthenticated: false,
         inputFieldValues: {
             required: ["Link"],
-            optional: ["Logo"]
+            optional: ["Logo"],
         },
     },
     {   id:2,
@@ -12,7 +12,7 @@ const QrFieldData = [
         isAuthenticated: false,
         inputFieldValues: {
             required: ["Email", "Subject", "Message"],
-            optional: ["Logo"]
+            optional: ["Logo"],
         },
     },
     {   id:3,
@@ -20,7 +20,7 @@ const QrFieldData = [
         isAuthenticated: false,
         inputFieldValues: {
             required: ["Text"],
-            optional: ["Logo"]
+            optional: ["Logo"],
         },
     },
     {   id:4,
@@ -28,7 +28,7 @@ const QrFieldData = [
         isAuthenticated: false,
         inputFieldValues: {
             required: ["Phone"],
-            optional: ["Logo"]
+            optional: ["Logo"],
         }
     },
     {   id:5,
@@ -44,7 +44,7 @@ const QrFieldData = [
         isAuthenticated: false,
         inputFieldValues: {
             required: ["Network Name", "Network Type", "Encryption", "Password"],
-            optional: ["logo"]
+            optional: ["logo"],
         }
     },
     {   id:7,
@@ -54,7 +54,6 @@ const QrFieldData = [
             required: ["Play store or App Store"],
             optional: [],
         },
-        logo: "",
     },
     {   id:8,
         isAuthenticated: true,

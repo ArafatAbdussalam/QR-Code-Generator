@@ -1,9 +1,9 @@
-import Button from "../UI/Button/Button";
-import QRFieldData from "./QRFieldData";
+import Button from "../../UI/Button/Button";
+import QrFieldData from "../QrData/QrFieldData";
 
 const QrButtonField = () => {
 
-    const QrButtons = QRFieldData
+    const QrButtons = QrFieldData
 
     const showQrInputFieldHandler = () => {
         

@@ -1,6 +1,6 @@
 import React from "react";
-import useInput from "../hooks/use-input";
-import Button from "../UI/Button/Button"
+import useInput from "../../hooks/use-input";
+import Button from "../../UI/Button/Button"
 
 const QrInputField = (props) => {
 

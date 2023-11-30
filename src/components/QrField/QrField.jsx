@@ -1,11 +1,13 @@
 import { Fragment, useState } from "react";
 import Button from "../UI/Button/Button";
-import QrFieldData from "./QrFieldData";
-import QrInputField from "./QRInputField";
-import QrOutputField from "./QrOutputField";
+import QrFieldData from "./QrData/QrFieldData";
+import QrInputField from "./QrInput/QrInputField";
+import QrOutputField from "./QrOutput/QrOutputField";
 
 const QRField = () => {
-
+    
+    const [error, setError] = useState(null)
+    const [qrCodeImageSrc, setQrCodeImageSrc] = useState(null)
     const [isGeneratingQrCode, setIsGeneratingQrCode] = useState(false)
     const [isGeneratedQrCode, setIsGeneratedQrCode] = useState(null)
 
@@ -13,15 +15,24 @@ const QRField = () => {
         setIsGeneratingQrCode(true)
     }
 
-    const generatedCodeHandler = (generatedQrCodeValue) => {
-        setIsGeneratedQrCode(
-            () => {
-                return (
-                    // set the imagesrc to the generatedcodevalue
-                    <QrOutputField imageSrc={generatedQrCodeValue} ></QrOutputField>
-                )
+    const generateQrCodeHandler = async (generatedQrCodeValue) => {
+        setIsGeneratedQrCode(false)
+
+        try {
+            const response = await fetch("")
+
+            const data = await response.json()
+
+            const imageSrc = data.image
+
+            setQrCodeImageSrc(imageSrc)
+
+            setIsGeneratedQrCode(true)
+
+        } catch (error) {
+            setError(error.message)
             }
-        )
+        
     }
 
     const fieldButtonValue = ""
@@ -40,7 +51,7 @@ const QRField = () => {
         <Fragment>
             <Button onClick={showQrInputField}>{fieldButtonValue}</Button>
             {isGeneratingQrCode && <QrInputField />}
-            <QrOutputField onGenerateQrCode={generatedCodeHandler} />
+            {isGeneratingQrCode && <QrOutputField onGenerateQrCode={generateQrCodeHandler} imageSrc={qrCodeImageSrc} />}
         </Fragment>
     )
 }

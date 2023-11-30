@@ -2,48 +2,32 @@ import React, {useState, useEffect } from "react";
 
 const AuthContext = React.createContext({
     isLoggedIn: false,
-    onLogout: () => {},
-    onLogin: (email, password) => {},
-    onSignup: () => {},
-})
+    login: (email, password) => {},
+    logout: () => {},
+    signup: (email, password) => {}
+    }
+)
 
-export const AuthContextProvider = (props) => {
+const loginHandler = (email, password) => {
 
-    const {children} = props;
+}
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [isSignedup, setIsSignedup] = useState(false)
 
-    useEffect( () => {
-        if (isLoggedIn) {
-            setIsLoggedIn(true)
-        }
-    })
 
-    const loginHandler = () => {
-        setIsLoggedIn(true)
+const AuthContextProvider = (props) => {
+
+    const {children} = props
+
+    const contextValue = {
+        isLoggedIn: isLoggedIn,
+        login: loginHandler,
+        logout: logoutHandler, 
     }
 
-    const signupHandler = () => {
-        setIsSignedup(true)
-    }
-
-    const logOutHandler = () => {
-        setIsLoggedIn(false)
-    }
 
     return (
-        <AuthContext.Provider
-        value={{
-            isLoggedIn: isLoggedIn,
-            onLogout: logOutHandler,
-            onLogin: loginHandler,
-            onSignup: signupHandler,
-        }}
-        >
+        <AuthContext.Provider>
             {children}
         </AuthContext.Provider>
     )
 }
-
-export default AuthContext;

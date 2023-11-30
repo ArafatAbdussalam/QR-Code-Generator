@@ -1,42 +1,29 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import "./Login.css"
 
-
 import Button from "../UI/Button/Button"
-import useInput from "../../hooks/use-input"
 
-
-const isNotEmpty = (value) => value.trim() !== ""
-const isEmail = (value) => value.includes("@")
 
 const Login = (props) => {
 
     const {onLogin} = props;
 
-    const [error, setError] = useState("")
+    const [formIsValid, setFormIsValid] = useState(false)
 
-    const {
-        value: userEmailValue,
-        isValid: userEmailIsValid,
-        valueHasError: userEmailHasError,
-        valueChangeHandler: userEmailChangeHandler,
-        inputBlurHandler: userEmailBlurHandler,
-        reset: resetUserEmail
-    } = useInput(isEmail)
+    const emailInputRef = useRef()
+    const passwordInputRef = useRef()
 
-    const {
-        value: userPasswordValue,
-        isValid: userPasswordIsValid,
-        valueHasError: userPasswordHasError,
-        valueChangeHandler: userPasswordChangeHandler,
-        inputBlurHandler: userPasswordBlurHandler,
-        reset: resetUserPassword
-    } = useInput(isNotEmpty)
+    const userEmailValue = emailInputRef.current.value()
+    const userPasswordValue = passwordInputRef.current.value()
 
-    let formIsValid = false;
 
-    if (userNameIsValid && userEmailIsValid && userPasswordIsValid) {
-        formIsValid = true;
+    if (userEmailIsValid && userPasswordIsValid) {
+        setFormIsValid(true)
+    }
+
+    const loginValue = {
+        email: userEmailValue,
+        password: userPasswordValue,
     }
 
     const loginSubmitHandler = async (event) => {
@@ -62,16 +49,6 @@ const Login = (props) => {
 
             const data = await response.json()
 
-            const id = ""
-
-            const loginValue = {
-                email: userEmailValue,
-                password: userPasswordValue,
-            }
-        
-            const {email: userEmail, password: userPassword} = loginValue
-        
-
             onLogin(loginValue)
         } catch (error) {
             setError(error.message || "Something went wrong")
@@ -87,15 +64,15 @@ const Login = (props) => {
 
             <div>
                 <label htmlFor="email">Email</label>
-                <input id="email" type="email" value={userEmailValue} onChange={userEmailChangeHandler} onBlur={userEmailBlurHandler} />
+                <input id="email" type="email" value={emailInputRef} />
             </div>
 
             <div>
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password" value={userPasswordValue} onChange={userPasswordChangeHandler} onBlur={userPasswordBlurHandler} />
+                <input id="password" type="password" value={passwordInputRef} />
             </div>
 
-        <Button disabled={!formIsValid} label="Log in" type="submit"/>
+            <Button disabled={!formIsValid} label="Log in" type="submit"/>
 
         </form>
     )

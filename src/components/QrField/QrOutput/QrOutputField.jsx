@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from "react";
-import Button from "../UI/Button/Button";
+import Button from "../../UI/Button/Button";
 
 const QrOutputField = (props) => {
 

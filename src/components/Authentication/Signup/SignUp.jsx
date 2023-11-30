@@ -1,94 +1,52 @@
-import React, { useState} from "react"
-import axios from "axios"
+import React, { useContext, useRef, useState} from "react"
+import "./Signup.css"
+
+import AuthContext from "../../store/auth-context"
 import Button from "../UI/Button/Button"
 
-import useInput from "../../hooks/use-input"
-
-
-const isNotEmpty = (value) => value.trim() !== ""
-const isEmail = (value) => value.includes("@")
 
 const Signup = (props) => {
 
     const {onSignup} = props;
 
-    const {
-        value: userNameValue,
-        isValid: userNameIsValid,
-        valueHasError: userNameHasError,
-        valueChangeHandler: userNameChangeHandler,
-        inputBlurHandler: userNameBlurHandler,
-        reset: resetUserName
-    } = useInput(isNotEmpty)
+    const context = useContext(AuthContext)
 
-    const {
-        value: userEmailValue,
-        isValid: userEmailIsValid,
-        valueHasError: userEmailHasError,
-        valueChangeHandler: userEmailChangeHandler,
-        inputBlurHandler: userEmailBlurHandler,
-        reset: resetUserEmail
-    } = useInput(isEmail)
+    const [formIsValid, setFormIsValid] = useState(false)
 
-    const {
-        value: userPasswordValue,
-        isValid: userPasswordIsValid,
-        valueHasError: userPasswordHasError,
-        valueChangeHandler: userPasswordChangeHandler,
-        inputBlurHandler: userPasswordBlurHandler,
-        reset: resetUserPassword
-    } = useInput(isNotEmpty)
+    const emailInputRef = useRef()
+    const passwordInputRef = useRef()
+
+    const userEmailValue = emailInputRef.current.value
+    const userPasswordValue = passwordInputRef.current.value
 
     const signupValue = {
-        name: userNameValue,
         email: userEmailValue,
         password: userPasswordValue,
     }
 
-    let formIsValid = false;
-
     if (userNameIsValid && userEmailIsValid && userPasswordIsValid) {
-        formIsValid = true;
+        setFormIsValid(true)
     }
 
-    const signupSubmitHandler = (event) => {
+    const signupSubmitHandler = async (event) => {
         event.preventDefault()
 
         if (!formIsValid) {
             return
         }
         
-        // axios method
+        try {
+            await fetch("", {
+                method: "POST",
+                body: JSON.stringify(signupValue),
+                header: {
+                    "Content-Type": "application/json"
+                }
+            })
+            
+        } catch(error) {
 
-        axios.post("/login", {
-            method: "POST",
-            body: JSON.stringify(value),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then((response) => {})
-        .catch((error)  => {})
-
-        // fetch method
-
-        // const response = fetch("/login", {
-        //     method: "POST",
-        //     body: JSON.stringify(value),
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // })
-        // response.json()
-
-
-
-        onSignup(signupValue)
-
-        resetUserName()
-        resetUserEmail()
-        resetUserPassword()
-
+        }
     }
 
 
