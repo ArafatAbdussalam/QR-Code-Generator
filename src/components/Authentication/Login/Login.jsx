@@ -1,12 +1,15 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useContext } from "react"
 import "./Login.css"
 
+import AuthContext from "../../store/auth-context";
 import Button from "../UI/Button/Button"
 
 
 const Login = (props) => {
 
     const {onLogin} = props;
+
+    const context = useContext(AuthContext)
 
     const [formIsValid, setFormIsValid] = useState(false)
 
@@ -72,7 +75,7 @@ const Login = (props) => {
                 <input id="password" type="password" value={passwordInputRef} />
             </div>
 
-            <Button disabled={!formIsValid} label="Log in" type="submit"/>
+            <Button disabled={!formIsValid} label="Log in" type="submit" />
 
         </form>
     )

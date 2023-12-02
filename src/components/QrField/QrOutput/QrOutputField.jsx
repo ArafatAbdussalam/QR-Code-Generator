@@ -5,15 +5,27 @@ const QrOutputField = (props) => {
 
     const {onDownloadQrCode, imageSrc} = props;
 
-    const [isDownloading, setIsDownloading] = useState(false)
+    const [isGenerating, setIsGenerating] = useState(false)
     
 
-    // get qrimage from api using axios method
-    // const qrImage = ""
-    // const qrLink = ""
+    // get image src based on data passed into qrinputfield
 
-    const downloadQrCodeHandler = (event) => {
+    const downloadQrCodeHandler = async (event) => {
         event.preventDefault()
+
+        try {
+            const response = await fetch("", {
+                body: JSON.stringify(),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+
+            const imageSrc = response.qrImage
+
+        } catch (error) {
+
+        }
 
         onDownloadQrCode(data)
     }
@@ -22,7 +34,10 @@ const QrOutputField = (props) => {
     return (
         <Fragment>
             <img src={imageSrc} />
-            <Button onClick={downloadQrCodeHandler}>Download QR Code</Button>
+            <a href={imageSrc} download>
+                <Button onClick={downloadQrCodeHandler}>Download QR Code</Button>
+            </a>
+            
         </Fragment>
     )
 }

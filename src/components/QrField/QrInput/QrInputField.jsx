@@ -1,31 +1,39 @@
 import React from "react";
-import useInput from "../../hooks/use-input";
+import Input from "./Input";
 import Button from "../../UI/Button/Button"
+import QrFieldData from "../QrData/QrFieldData";
 
 const QrInputField = (props) => {
 
-    const {onGenerateQrCode} = props
-
-    const [error, setError] = useState(null)
-    // const [isGenerating, setIsGenerating] = useState(false)
-
-    const isNotEmpty = (value) => value.trim() !== ""
-
-    const {
-        value: wifiValue,
-        isValid: wifiValueIsValid,
-        valueHasError: wifiValueHasError,
-        valueChangeHandler: wifiValueChangeHandler,
-        inputBlurHandler: wifiValueBlurHandler,
-        reset: resetWifiValue
-    } = useInput(isNotEmpty)
-
+    const {onDisplayQrCode} = props
     
-    const fieldValue = {
-        forWifi: wifiValue
+    const qrInputData = QrFieldData
+
+    const qrInputField = qrInputData.map(
+        (item) => {
+
+            const inputLabel = item.inputFieldValues.required.map((label)=> { return label })
+            console.log(inputLabel)
+
+            return (
+                <Input key={item.id} 
+                       label={inputLabel}
+                       type={item.type}
+                       value={item.value}
+                       required={item.required}
+                />
+            )
+        }
+    )
+
+    // how do i get the value and id after it has been passed into input component
+    const inputId = qrInputField.id
+    const inputValues = qrInputField.value
+
+    const inputFieldValue = {
+        id: inputId,
+        inputValues: [[].push(inputValues)]
     }
-    
-    // const {wifi: forWifi} = fieldValue
 
     const generateQrCodeHandler = (event) => {
         event.preventDefault()
@@ -34,9 +42,12 @@ const QrInputField = (props) => {
         setError(null)
 
         const generateQrCode = async (inputField) => {
+
+            // the only data i need to send here is the value of each input and its id
+            // store all the values of each input as an object
             
             try {
-                const response = awaitfetch(
+                const response = await fetch(
                     "", {
                         method: "POST",
                         body: JSON.stringify({inputField}),
@@ -52,38 +63,24 @@ const QrInputField = (props) => {
                 
                 const data = await response.json()
 
-                // where do we have data.name from
-                const generatedId = data.name
-                // inputfield here is same as the one passed as param
-                const generatedCode = {id: generatedId, codeValue: inputField}
-
-                onGenerateQrCode(generatedCode)
+                const inputId = data.id
+                const inputValue = data.value
             } catch(error) {
-                SpeechSynthesisErrorEvent(error.message || "unable to generate QR code")
+                setError(error.message || "unable to generate QR code")
             }
 
-        }
+        } 
 
-        generateQrCode(fieldValue)
+        generateQrCode(inputFieldValue)
+
+        onDisplayQrCode()
 
     }
 
-
     return (
         <form onSubmit={generateQrCodeHandler}>
-
-
-            <div className="wifi">
-
-            <input value={wifiValue} onChange={wifiValueChangeHandler} onBlur={wifiValueBlurHandler}/>
-                {/* <input value={networkName} onChange={networkNameChangeHandler} onBlur={wifiValueBlurHandler}/>
-                <input value={networkType} onChange={networkTypeChangeHandler} onBlur={wifiValueBlurHandler}/>
-                <input value={WifiPassword} onChange={wifiPasswordChangeHandler} onBlur={wifiValueBlurHandler}/> */}
-            </div>
-            
+            {qrInputField}
             <Button type="submit">Generate</Button>
-
-            {!error}
         </form>
     )
 }

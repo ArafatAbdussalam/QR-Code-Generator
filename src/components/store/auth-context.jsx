@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, {useState } from "react";
 
 const AuthContext = React.createContext({
     isLoggedIn: false,
@@ -8,13 +8,43 @@ const AuthContext = React.createContext({
     }
 )
 
-const loginHandler = (email, password) => {
+const loginHandler = async (email, password) => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+    try {
+        const response = await fetch("", {
+
+        })
+
+        const loginValue = response.json()
+
+        setIsLoggedIn(true)
+    } catch (error) {
+
+    }
+
+}
+
+const logoutHandler = async () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    setIsLoggedIn(false)
+}
+
+const signupHandler = async (email, password) => {
+    try {
+        const response = await fetch("", {
+
+        })
+
+        const signupValue = response.json()
+    } catch (error) {
+
+    }
 }
 
 
 
-const AuthContextProvider = (props) => {
+export const AuthContextProvider = (props) => {
 
     const {children} = props
 
@@ -22,6 +52,7 @@ const AuthContextProvider = (props) => {
         isLoggedIn: isLoggedIn,
         login: loginHandler,
         logout: logoutHandler, 
+        signup: signupHandler,
     }
 
 
@@ -31,3 +62,5 @@ const AuthContextProvider = (props) => {
         </AuthContext.Provider>
     )
 }
+
+export default AuthContext
