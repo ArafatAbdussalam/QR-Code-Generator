@@ -2,14 +2,14 @@ import React, { Fragment, useRef } from "react"
 
 const Input = (props) => {
 
-    const {label, type, value, required} = props
+    const {label, type, ref, required} = props
 
 
     return (
         
         <Fragment>
             <label className="input-label">{label}</label>
-            <input className="input-value" type={type} value={value} required={required}></input>
+            <input className="input-value" type={type} ref={ref} required={required}></input>
         </Fragment>
         
     )
