@@ -1,45 +1,30 @@
-import { useContext } from "react";
+import React, { Fragment } from "react";
 
 import "./QrButtonField.css"
-
-import Button from "../../UI/Button/Button";
 import QrFieldData from "../QrData/QrFieldData";
-import AuthContext from "../../store/auth-context";
-import QrInputField from "../QrInput/QrInputField";
+import Button from "../../UI/Button/Button";
 
+const QrButtonField = (props) => {
 
-const QrButtonField = () => {
+    const {onShowQrInputField} = props
 
-    const context = useContext(AuthContext)
+    const qrData = QrFieldData
 
-    const QrButtons = QrFieldData
+    const QrButtons = qrData.map(
+            (item) => {
+                
+                const buttonText = item.text
 
-    const showQrInputFieldHandler = () => {
-
-        if (!context.isLoggedIn) {
-            return
-            // works for authenticated users only
-        }
-        
-        if (context.isLoggedIn) {
-            return (
-                <QrInputField />
-            )
-
-        }
-    }
-
-    QrButtons.map(
-        (button) => {
-            return (
-                <Button key={button.id} label={button.text} onClick={showQrInputFieldHandler}/>
-            )
-
-        }
-    )
+                return (
+                    <Button key={item.id} onClick={onShowQrInputField}>{buttonText}</Button>
+                )
+            }
+        )
 
     return (
-        {QrButtons}
+        <Fragment>
+            {QrButtons}
+        </Fragment>
     )
 }
 

@@ -3,38 +3,31 @@ import Button from "../../UI/Button/Button";
 
 const QrOutputField = (props) => {
 
-    const {onDownloadQrCode, imageSrc} = props;
+    const {qrImage} = props
 
-    const [isGenerating, setIsGenerating] = useState(false)
-    
-
-    // get image src based on data passed into qrinputfield
-
-    const downloadQrCodeHandler = async (event) => {
-        event.preventDefault()
+    const downloadQrCodeHandler = async (qrImage) => {
 
         try {
-            const response = await fetch("", {
-                body: JSON.stringify(),
-                headers: {
-                    "Content-Type": "application/json",
-                }
+
+            await fetch("", {
+                body: JSON.stringify({
+                    id: qrImage.id,
+                    imageSrc: qrImage.src,
+                })
             })
 
-            const imageSrc = response.qrImage
-
-        } catch (error) {
-
+        } catch(error) {
+    
         }
+    
 
-        onDownloadQrCode(data)
     }
-
+    
 
     return (
         <Fragment>
-            <img src={imageSrc} />
-            <a href={imageSrc} download>
+            <img src={qrImage} />
+            <a href={qrImage} download>
                 <Button onClick={downloadQrCodeHandler}>Download QR Code</Button>
             </a>
             

@@ -63,19 +63,19 @@ const Login = (props) => {
 
 
     return (
-        <form onSubmit={loginSubmitHandler}>
+        <form className="login-form" onSubmit={loginSubmitHandler}>
 
-            <div>
+            <div className="login-form-control">
                 <label htmlFor="email">Email</label>
                 <input id="email" type="email" value={emailInputRef} />
             </div>
 
-            <div>
+            <div className="login-form-control">
                 <label htmlFor="password">Password</label>
                 <input id="password" type="password" value={passwordInputRef} />
             </div>
 
-            <Button disabled={!formIsValid} label="Log in" type="submit" />
+            <Button className="login-form-button" disabled={!formIsValid} label="Log in" type="submit" />
 
         </form>
     )

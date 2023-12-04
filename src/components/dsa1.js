@@ -1,5 +1,5 @@
 const QrFieldData = [
-    {   id: "1",
+    {   id:1,
         text: "link",
         isAuthenticated: false,
         inputFieldValues: [
@@ -7,7 +7,7 @@ const QrFieldData = [
                 { id: "b1", label: "Logo", type: "link", required: "false" },
             ],
     },
-    {   id: "2",
+    {   id:2,
         text: "email",
         isAuthenticated: false,
         inputFieldValues: [
@@ -17,7 +17,7 @@ const QrFieldData = [
                 { id: "d2", label: "Logo", type: "link", required: "false" },
             ],
     },
-    {   id: "3",
+    {   id:3,
         text: "text",
         isAuthenticated: false,
         inputFieldValues: [
@@ -25,7 +25,7 @@ const QrFieldData = [
                 { id: "b3", label: "Logo", type: "link", required: "false" },
             ],
     },
-    {   id: "4",
+    {   id:4,
         text: "phone",
         isAuthenticated: false,
         inputFieldValues: [
@@ -33,7 +33,7 @@ const QrFieldData = [
                 { id: "b4", label: "Logo", type: "link", required: "false" },
             ],
     },
-    {   id: "5",
+    {   id:5,
         text: "whatsapp",
         isAuthenticated: false,
         inputFieldValues:[
@@ -41,7 +41,7 @@ const QrFieldData = [
                 { id: "b5", label: "Logo", type: "link", required: "false" },
             ],
     },
-    {   id: "6",
+    {   id:6,
         text: "wifi",
         isAuthenticated: false,
         inputFieldValues: [
@@ -52,20 +52,62 @@ const QrFieldData = [
                 { id: "e6", label: "Logo", type: "link", required: "false" },
             ],
     },
-    {   id: "7",
+    {   id:7,
         text: "app",
         isAuthenticated: true,
         inputFieldValues: [
-                { id: "a7", label: "Play store or App Store", type: "link", required: "true" }, 
+                { id: "a7",label: "Play store or App Store", type: "link", required: "true" }, 
             ]
     },
-    {   id: "8",
+    {   id:8,
         isAuthenticated: true,
         text: "socials",
         inputFieldValues: [
-                {id: "a8", label: "Socials", type: "text", required: "true" }, 
+                {id: "a8",label: "Socials", type: "link", required: "true" }, 
             ],
     },
 ];
 
-export default QrFieldData;
+const qr = QrFieldData
+let allLabels = []
+
+qr.map(
+    (item) => {
+
+        if (item.id === 1) {
+
+        const inputField = item.inputFieldValues
+
+        inputField.map(
+            (item) => {
+                
+                const inputKey = item.id 
+
+                const inputLabel = item.label
+                const inputType = item.type
+                const requiredMode = item.required ? "true" : true ? "false": 
+
+                console.log("----input label-----")
+                console.log(inputLabel)
+
+                console.log("----input type-----")
+                console.log(inputType)
+
+                console.log("----required mode-----")
+
+                console.log(requiredMode)
+
+                console.log("-----the end------")
+
+                console.log(inputKey)
+
+                allLabels.push(inputLabel)
+
+            }    
+        )
+    }
+    }
+)
+
+console.log("---out of field")
+console.log(allLabels)

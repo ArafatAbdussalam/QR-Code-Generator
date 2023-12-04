@@ -20,3 +20,7 @@ User Authentication,
 
 A user should be able to sign up, Log in , and Log out
 Handle Permissions
+
+// use hooks to get handle the value of each input
+
+if the val

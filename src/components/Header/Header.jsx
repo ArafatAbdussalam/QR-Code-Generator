@@ -20,14 +20,14 @@ const Header = () => {
 
                         {!authContext.isLoggedIn && (
                             <Fragment>
-                                <Button onClick={authContext.onLogin}>Log in</Button>
-                                <Button onClick={authContext.onSignup}>Sign up</Button>
+                                <Button className="header-button" onClick={authContext.onLogin}>Log in</Button>
+                                <Button className="header-button" onClick={authContext.onSignup}>Sign up</Button>
                             </Fragment>
                             )
                         }
 
                         {authContext.isLoggedIn && (
-                            <Button onClick={authContext.onLogout}>Log out</Button>
+                            <Button className="header-button" onClick={authContext.onLogout}>Log out</Button>
                             )
                         }
                     </ul>

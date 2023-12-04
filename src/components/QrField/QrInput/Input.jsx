@@ -4,15 +4,12 @@ const Input = (props) => {
 
     const {label, type, value, required} = props
 
-    value = useRef()
-    const inputValue = value.current.value()
-
-    const requiredValue = required || false
 
     return (
+        
         <Fragment>
-            <label>{label}</label>
-            <input type={type} value={inputValue} required={requiredValue}></input>
+            <label className="input-label">{label}</label>
+            <input className="input-value" type={type} value={value} required={required}></input>
         </Fragment>
         
     )

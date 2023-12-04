@@ -51,16 +51,16 @@ const Signup = (props) => {
 
 
     return (
-        <form onSubmit={signupSubmitHandler}>
+        <form className="signup-form" onSubmit={signupSubmitHandler}>
 
-            <div>
+            <div className="signup-form-control">
                 <label htmlFor="userName">Name</label>
                 <input id="userName" type="text" value={userNameValue} onChange={userNameChangeHandler} onBlur={userNameBlurHandler}/>
 
                 {!userNameHasError}
             </div>
 
-            <div>
+            <div className="signup-form-control">
                 <label htmlFor="email">Email</label>
                 <input id="email" type="email" value={userEmailValue} onChange={userEmailChangeHandler} onBlur={userEmailBlurHandler} />
                 
@@ -75,7 +75,7 @@ const Signup = (props) => {
                 {!userPasswordHasError}
             </div>
 
-        <Button disabled={!formIsValid} label="Sign up" type="submit"/>
+        <Button className="signup-form-button" disabled={!formIsValid} label="Sign up" type="submit"/>
 
         </form>
     )

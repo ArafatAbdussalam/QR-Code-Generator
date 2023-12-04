@@ -4,7 +4,10 @@ const Footer = () => {
 
     return (
         <Fragment>
-            <footer>This is a footer</footer>
+            <footer className="footer">
+                <h3>Footer page</h3>
+                <h3>Link to Github</h3>
+            </footer>
         </Fragment>
     )
 }
