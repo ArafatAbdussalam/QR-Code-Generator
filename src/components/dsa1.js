@@ -66,22 +66,22 @@ const QrFieldData = [
                 {id: "a8", label: "Socials", type: "text", required: "true" }, 
             ],
     },
-];
+];       
 
 
-const qrInputData = QrFieldData
+// const qrInputData = QrFieldData
 
-qrInputData.map(
-     (qrField) => {
-         const fieldItems = qrField.inputFieldValues
+// qrInputData.map(
+//      (qrField) => {
+//          const fieldItems = qrField.inputFieldValues
 
-         fieldItems.map(
-             (item) => {
-                 console.log(item)
-             }
-         )
-     }
-)
+//          fieldItems.map(
+//              (item) => {
+//                  console.log(item)
+//              }
+//          )
+//      }
+// )
 
 
 // const qr = QrFieldData

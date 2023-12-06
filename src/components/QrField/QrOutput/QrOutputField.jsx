@@ -8,9 +8,7 @@ const QrOutputField = (props) => {
     return (
         <Fragment>
             <img src={qrImage} />
-            <a href={qrImage} download>
-                <Button>Download QR Code</Button>
-            </a>
+            <Button><a href={qrImage} download>Download QR COde</a></Button>
             
         </Fragment>
     )

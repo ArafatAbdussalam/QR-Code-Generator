@@ -14,19 +14,42 @@ import Footer from "./components/Footer/Footer";
 
 const App = () => {
 
-    const [qrCode, setQrCode] = useState(null)
+    const [qrImage, setQrImage] = useState(null)
     const [isShowQrInputField, setIsShowQrInputfield] = useState(false)
     const [isQrCodeGenerated, setIsQrCodeGenerated] = useState(false)
 
     const showQrInputFieldHandler = () => {
+
+        const inputFields = ""
+
+
         setIsShowQrInputfield(true)
     }
 
-    const generateQrCodeHandler = (qrCode) => {
-        setIsQrCodeGenerated(true)
+    const generateQrCodeHandler = async (qrInputValues) => {
 
-        setQrCode(qrCode)
+        try {
+            const response = await fetch("", {
+                method: "POST",
+                body: JSON.stringify(qrInputValues),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+
+            const data = await response.json()
+
+            const qrImage = data.image
+
+            setQrImage(qrImage)
+
+            setIsQrCodeGenerated(true)
+
+        } catch (error) {
+
+        }
     }
+
 
     return (
         <Fragment>
@@ -34,8 +57,8 @@ const App = () => {
             <SectionContainer />
 
             <QrButtonField onShowQrInputField={showQrInputFieldHandler}/>
-            {isShowQrInputField && <QrInputField onGenerateQrCode={generateQrCodeHandler} />}
-            {isQrCodeGenerated && <QrOutputField qrCode={qrCode}/>}
+            {isShowQrInputField && <QrInputField fields={inputFields} onGenerateQrCode={generateQrCodeHandler} />}
+            {isQrCodeGenerated && <QrOutputField qrImage={qrImage}/>}
 
             <Footer />
         </Fragment>
