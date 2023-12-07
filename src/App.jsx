@@ -5,9 +5,8 @@ import "./App.css"
 import Header from "./components/Header/Header";
 import SectionContainer from "./components/SectionContainer/SectionContainer";
 
-import QrButtonField from "./components/QrField/QrButton/QrButtonField";
-import QrInputField from "./components/QrField/QrInput/QrInputField";
-import QrOutputField from "./components/QrField/QrOutput/QrOutputField";
+import QrFieldData from "./components/QrField/QrData/QrFieldData";
+import QrField from "./components/QrField/QrField";
 
 import Footer from "./components/Footer/Footer";
 
@@ -15,16 +14,7 @@ import Footer from "./components/Footer/Footer";
 const App = () => {
 
     const [qrImage, setQrImage] = useState(null)
-    const [isShowQrInputField, setIsShowQrInputfield] = useState(false)
     const [isQrCodeGenerated, setIsQrCodeGenerated] = useState(false)
-
-    const showQrInputFieldHandler = () => {
-
-        const inputFields = ""
-
-
-        setIsShowQrInputfield(true)
-    }
 
     const generateQrCodeHandler = async (qrInputValues) => {
 
@@ -50,17 +40,30 @@ const App = () => {
         }
     }
 
+    const qrFieldItems = QrFieldData
+
+    const qrField = qrFieldItems.map(
+            (qrField, index) => {
+                return(
+                    <QrField key={index} qrFieldItems={qrField} onGenerateQrCode={generateQrCodeHandler} />
+                )
+            }
+    )
+    
+
 
     return (
         <Fragment>
+
             <Header />
             <SectionContainer />
 
-            <QrButtonField onShowQrInputField={showQrInputFieldHandler}/>
-            {isShowQrInputField && <QrInputField fields={inputFields} onGenerateQrCode={generateQrCodeHandler} />}
-            {isQrCodeGenerated && <QrOutputField qrImage={qrImage}/>}
+            {qrField}
+            
+            {isQrCodeGenerated && <QrOutputField qrImage={qrImage}/>} 
 
             <Footer />
+
         </Fragment>
     )
 }

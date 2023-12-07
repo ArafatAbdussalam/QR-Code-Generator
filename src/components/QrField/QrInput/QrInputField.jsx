@@ -1,17 +1,29 @@
 import { Fragment, useRef } from "react";
 import Input from "./Input";
 
-const sampleInputField = () => {
+import Button from "../../UI/Button/Button";
 
-    const {fields, onGenerateQrCode} = props
+const QrInputField = (props) => {
+
+    const {fields, onGenerateQrCode } = props
 
     const valueRef = useRef()
 
+    const qrCodeSubmitHandler = (event) => {
+        event.preventDefault()
+
+        let qrInputValues;
+
+        qrInputValues.push(valueRef.current.value)
+
+        onGenerateQrCode(qrInputValues)
+    }
+
     const qrInputs = fields.map(
-        (field) => {
+        (field, index) => {
             return (
                 <Input 
-                    key = {field.key}
+                    key = {index}
                     label = {field.label} 
                     type = {field.type} 
                     required = {field.required} 
@@ -22,20 +34,9 @@ const sampleInputField = () => {
     )
 
 
-    const generateQrCodeHandler = (event) => {
-        event.preventDefault()
-
-        // get all values of all inputs
-        const qrInputValues = []
-
-        qrInputValues.push(valueRef.current.value)
-
-        onGenerateQrCode(qrInputValues)
-    }
-
     return (
         <Fragment>
-            <form className="input-form" onSubmit={generateQrCodeHandler}>
+            <form className="input-form" onSubmit={qrCodeSubmitHandler}>
                 {qrInputs}
                 <Button className="input-button" type="submit">Generate</Button>
             </form>
@@ -43,4 +44,4 @@ const sampleInputField = () => {
     )
 }
 
-export default sampleInputField;
+export default QrInputField;
