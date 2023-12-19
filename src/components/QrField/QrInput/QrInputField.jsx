@@ -1,4 +1,4 @@
-import { Fragment, useRef } from "react";
+import { Fragment, useRef, useState } from "react";
 import Input from "./Input";
 
 import Button from "../../UI/Button/Button";
@@ -7,16 +7,29 @@ const QrInputField = (props) => {
 
     const {fields, onGenerateQrCode } = props
 
-    const valueRef = useRef()
+    const [inputValue, setInputValue] = useState()
+
+
+    let qrInputValues = [];
+
+    const valueChangeHandler = (event) => {
+
+        setInputValue(
+            event.target.value
+        )
+
+        qrInputValues.push(event.target.value)
+
+    }
 
     const qrCodeSubmitHandler = (event) => {
         event.preventDefault()
 
-        let qrInputValues;
-
-        qrInputValues.push(valueRef.current.value)
+        console.log(qrInputValues)
 
         onGenerateQrCode(qrInputValues)
+
+        setInputValue("")
     }
 
     const qrInputs = fields.map(
@@ -27,7 +40,8 @@ const QrInputField = (props) => {
                     label = {field.label} 
                     type = {field.type} 
                     required = {field.required} 
-                    ref = {valueRef}
+                    onChange = {valueChangeHandler}
+                    value = {inputValue}
                 />
             )
         }
@@ -36,7 +50,7 @@ const QrInputField = (props) => {
 
     return (
         <Fragment>
-            <form className="input-form" onSubmit={qrCodeSubmitHandler}>
+            <form name="inputForm" className="input-form" onSubmit={qrCodeSubmitHandler}>
                 {qrInputs}
                 <Button className="input-button" type="submit">Generate</Button>
             </form>

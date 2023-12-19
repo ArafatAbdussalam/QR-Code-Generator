@@ -2,6 +2,8 @@ import { Fragment, useState } from "react";
 
 import "./App.css"
 
+import { AuthContextProvider } from "./components/store/auth-context";
+
 import Header from "./components/Header/Header";
 import SectionContainer from "./components/SectionContainer/SectionContainer";
 
@@ -9,6 +11,7 @@ import QrFieldData from "./components/QrField/QrData/QrFieldData";
 import QrField from "./components/QrField/QrField";
 
 import Footer from "./components/Footer/Footer";
+
 
 
 const App = () => {
@@ -23,7 +26,7 @@ const App = () => {
                 method: "POST",
                 body: JSON.stringify(qrInputValues),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "form/multipart"
                 }
             })
 
@@ -55,15 +58,17 @@ const App = () => {
     return (
         <Fragment>
 
-            <Header />
-            <SectionContainer />
+            <AuthContextProvider>
+                <Header />
+                <SectionContainer />
 
-            {qrField}
+                {qrField}
+                
+                {isQrCodeGenerated && <QrOutputField qrImage={qrImage}/>} 
+
+                <Footer />
+            </AuthContextProvider>
             
-            {isQrCodeGenerated && <QrOutputField qrImage={qrImage}/>} 
-
-            <Footer />
-
         </Fragment>
     )
 }

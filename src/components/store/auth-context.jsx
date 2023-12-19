@@ -1,66 +1,87 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 
 const AuthContext = React.createContext({
+    token: "",
+    signup: () => {},
+    login: () => {},
     isLoggedIn: false,
-    login: (email, password) => {},
-    logout: () => {},
-    signup: (email, password) => {}
-    }
-)
-
-const loginHandler = async (email, password) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-    try {
-        const response = await fetch("", {
-
-        })
-
-        const loginValue = response.json()
-
-        setIsLoggedIn(true)
-    } catch (error) {
-
-    }
-
-}
-
-const logoutHandler = async () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    setIsLoggedIn(false)
-}
-
-const signupHandler = async (email, password) => {
-    try {
-        const response = await fetch("", {
-
-        })
-
-        const signupValue = response.json()
-    } catch (error) {
-
-    }
-}
-
+    logout: (token) => {},
+})
 
 
 export const AuthContextProvider = (props) => {
 
     const {children} = props
 
-    const contextValue = {
-        isLoggedIn: isLoggedIn,
-        login: loginHandler,
-        logout: logoutHandler, 
+    const [token, setToken] = useState(null)
+    const [userIsLoggedIn, setUserIsLoggedIn] = useState(false)
+
+
+    const loginHandler = async () => {
+        const token = localStorage.getItem("token")
+
+        try {
+            if (token) {
+                
+                const url = ""
+
+                const response = await fetch(url, {
+                    body: JSON.stringify({token}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+
+                const result = response.json()
+            }
+        } catch(error) {
+
+        }
+    }
+
+    const signupHandler = async () => {
+        try {
+
+            if(true) {
+                const url = ""
+
+                const response = await fetch(url, {
+                    body: JSON.stringify({token}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+
+                const result = response.json()
+            }
+
+        } catch(error) {
+
+        }
+    }
+
+    const logoutHandler = () => {
+        localStorage.removeItem("token")
+        setUserIsLoggedIn(false)
+
+
+    }
+
+    const authContextValues = {
+        token: token,
         signup: signupHandler,
+        login: loginHandler,
+        isLoggedIn: userIsLoggedIn,
+        logout: logoutHandler,
     }
 
 
-    return (
-        <AuthContext.Provider>
+    return(
+        <AuthContext.Provider value={authContextValues}>
             {children}
         </AuthContext.Provider>
     )
+
 }
 
-export default AuthContext
+export default AuthContext;

@@ -27,7 +27,7 @@ const Header = () => {
                         }
 
                         {authContext.isLoggedIn && (
-                            <Button className="header-button" onClick={authContext.onLogout}>Log out</Button>
+                            <Button className="header-button" onClick={authContext.logout}>Log out</Button>
                             )
                         }
                     </ul>
