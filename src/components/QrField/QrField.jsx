@@ -2,9 +2,10 @@ import React, { Fragment, useContext, useState } from "react";
 
 import AuthContext from "../store/auth-context";
 
-import Button from "../UI/Button/Button";
+import TextButton from "../UI/Button/TextButton";
 import QrInputField from "./QrInput/QrInputField";
 
+import "./QrField.css"
 
 
 const QrField = (props) => {
@@ -47,7 +48,7 @@ const QrField = (props) => {
 
     return (
         <Fragment>
-            <Button onClick={showQrInputFieldHandler}>{qrFieldItems.text}</Button>
+            <TextButton className="qr-button" onClick={showQrInputFieldHandler}>{qrFieldItems.text}</TextButton>
             {showInputField && <QrInputField fields={qrFieldItems.inputFieldValues} onGenerateQrCode={onGenerateQrCode} />}
         </Fragment>
     )

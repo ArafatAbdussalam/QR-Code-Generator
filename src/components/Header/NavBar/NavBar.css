@@ -1,0 +1,18 @@
+.nav {
+    width: 100%;
+    padding: 10px;
+    background: white;
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nav-button {
+    background: white;
+    color: black;
+    margin: 0;
+}

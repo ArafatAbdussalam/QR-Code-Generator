@@ -1,0 +1,19 @@
+.text-button {
+    border: none;
+    height: 40px;
+    color: black;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.text-button:active {
+    background: rgb(120, 152, 184);
+    color: white;
+    top: 2px;
+}
+
+.text-button:hover {
+    background: black;
+    color: white;
+}

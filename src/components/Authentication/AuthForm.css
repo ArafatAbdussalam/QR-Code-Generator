@@ -1,0 +1,32 @@
+.auth-form {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #cae9ff;
+}
+
+.form-control {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.form-control label {
+    display: block;
+    width: 30%;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.form-control input {
+    display: block;
+    background: white;
+    width: 90%;
+    border: none;
+}
+
+.auth-form-button {
+    width: 30%;
+    margin: auto;
+}

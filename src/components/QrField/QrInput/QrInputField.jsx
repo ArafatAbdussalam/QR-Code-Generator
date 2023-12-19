@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState } from "react";
 import Input from "./Input";
 
-import Button from "../../UI/Button/Button";
+import TextButton from "../../UI/Button/TextButton";
 
 const QrInputField = (props) => {
 
@@ -52,7 +52,7 @@ const QrInputField = (props) => {
         <Fragment>
             <form name="inputForm" className="input-form" onSubmit={qrCodeSubmitHandler}>
                 {qrInputs}
-                <Button className="input-button" type="submit">Generate</Button>
+                <TextButton className="input-button" type="submit">Generate</TextButton>
             </form>
         </Fragment>
     )

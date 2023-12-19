@@ -4,7 +4,7 @@ import "./App.css"
 
 import { AuthContextProvider } from "./components/store/auth-context";
 
-import Header from "./components/Header/Header";
+import NavBar from "./components/Header/NavBar/NavBar";
 import SectionContainer from "./components/SectionContainer/SectionContainer";
 
 import QrFieldData from "./components/QrField/QrData/QrFieldData";
@@ -59,7 +59,7 @@ const App = () => {
         <Fragment>
 
             <AuthContextProvider>
-                <Header />
+                <NavBar />
                 <SectionContainer />
 
                 {qrField}

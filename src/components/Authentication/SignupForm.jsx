@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import AuthContext from "../store/auth-context";
 
-import Button from "../UI/Button/Button";
+import TextButton from "../UI/Button/TextButton";
+
+import "./AuthForm.css"
 
 
 const SignupForm = () => {
 
+    const signupContext = useContext(AuthContext)
+
     const [emailValue, setEmailValue] = useState("")
     const [passwordValue, setPasswordValue] = useState("")
+
 
 
     const emailChangeHandler = (event) => {
@@ -22,20 +27,24 @@ const SignupForm = () => {
     const signupSubmitHandler = async (event) => {
         event.preventDefault()
 
-        const url = ""
+        try {
+            const url = ""
+            
+            const response = await fetch(url, {
+                method: "POST",
+                body: JSON.stringify({
+                    email: emailValue,
+                    password: passwordValue,
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+    
+            const result = await response.json()
+        } catch(error) {
 
-        const response = await fetch(url, {
-            method: "POST",
-            body: JSON.stringify({
-                email: emailValue,
-                password: passwordValue,
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-
-        const result = await response.json()
+        }
 
 
         setEmailValue("")
@@ -43,18 +52,18 @@ const SignupForm = () => {
     }
 
     return(
-        <form onSubmit={signupSubmitHandler}>
-            <div>
+        <form className="auth-form" onSubmit={signupSubmitHandler}>
+            <div className="form-control">
                 <label htmlFor="email">Email</label>
                 <input id="email" type="email" onChange={emailChangeHandler} value={emailValue} required/>
             </div>
 
-            <div>
+            <div className="form-control">
                 <label htmlFor="password">Password</label>
                 <input id="password" type="password" onChange={passwordChangeHandler} value={passwordValue} required/>
             </div>
 
-            <Button type="submit">Signup</Button>
+            <TextButton className="auth-form-button" type="submit">Signup</TextButton>
         </form>
     )
 }

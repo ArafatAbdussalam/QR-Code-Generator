@@ -1,1 +1,5 @@
- 
+ .qr-button {
+    margin: 10px;
+    border-radius: 0;
+    background: #ffafcc;
+ }

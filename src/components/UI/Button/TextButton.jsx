@@ -1,6 +1,6 @@
-import "./Button.css"
+import "./TextButton.css"
 
-const Button = (props) => {
+const TextButton = (props) => {
 
     const {type, className, onClick, children} = props
 
@@ -13,4 +13,4 @@ const Button = (props) => {
     )
 }
 
-export default Button;
+export default TextButton;
