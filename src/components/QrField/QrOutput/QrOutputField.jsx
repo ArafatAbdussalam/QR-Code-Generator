@@ -1,5 +1,8 @@
-import React, {Fragment, useState} from "react";
-import Button from "../../UI/Button/Button";
+import React, {Fragment} from "react";
+
+import "./QrOutputField.css"
+
+import TextButton from "../../UI/Button/TextButton";
 
 const QrOutputField = (props) => {
 
@@ -7,9 +10,10 @@ const QrOutputField = (props) => {
 
     return (
         <Fragment>
-            <img src={qrImage} />
-            <Button><a href={qrImage} download>Download QR COde</a></Button>
-            
+            <div className="qr-output-field">
+                <img className="qr-output-image" src={qrImage} />
+                <TextButton className="qr-output-button"><a href={qrImage} download>Download QR Code</a></TextButton>
+            </div>    
         </Fragment>
     )
 }

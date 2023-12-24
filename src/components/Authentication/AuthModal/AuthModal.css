@@ -1,0 +1,41 @@
+.auth-modal {
+    margin: auto;
+    padding: 20px;
+    z-index: 9000;
+    font-size: 20px;
+    max-width: 400px;
+    text-align: center;
+    align-items: center;
+    background: #cae9ff;
+} 
+
+.auth-modal h3 {
+    margin-bottom: 10px;
+}
+
+.logout-modal-buttons {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.logout-modal-button {
+    width: 50px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.logout-modal-button:hover {
+    color: black;
+    background: rgba(206, 200, 200, 0.993);
+}
+
+.logout-modal-button:active {
+    color: white;
+    background: black;
+}
+
+.logout-modal-button:nth-child(1) {
+    margin-right: 20px;
+}

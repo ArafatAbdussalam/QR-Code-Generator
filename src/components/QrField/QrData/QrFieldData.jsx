@@ -13,7 +13,7 @@ const QrFieldData = [
         inputFieldValues: [
                 { id: "a2", label: "Email", type: "link", required: "true" }, 
                 { id: "b2", label: "Subject", type: "link", required: "true" },
-                { id: "c2", label: "Message", type: "link", required: "true" },
+                { id: "c2", label: "Message", type: "textarea", required: "true" },
                 { id: "d2", label: "Logo", type: "link", required: "false" },
             ],
     },
@@ -60,8 +60,8 @@ const QrFieldData = [
             ]
     },
     {   id: "8",
-        isAuthenticated: true,
         text: "socials",
+        isAuthenticated: true,
         inputFieldValues: [
                 {id: "a8", label: "Socials", type: "text", required: "true" }, 
             ],

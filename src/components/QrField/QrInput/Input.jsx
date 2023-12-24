@@ -1,15 +1,26 @@
-import React, { Fragment, useRef } from "react"
+import React, { Fragment, useState } from "react"
+
+import "./Input.css"
 
 const Input = (props) => {
 
-    const {label, type, required, onChange, value} = props
+    const {label, type, required} = props
+
+    const [inputValue, setInputValue] = useState("")
+
+    const valueChangeHandler = (event) => {
+        setInputValue(event.target.value)
+    }
 
 
     return (
         
         <Fragment>
-            <label className="input-label">{label}</label>
-            <input className="input-value" type={type} required={required} onChange={onChange} value={value}></input>
+            <div className="qr-input">
+                <label>{label}</label>
+                <input type={type} required={required} onChange={valueChangeHandler} value={inputValue}></input>
+            </div>
+            
         </Fragment>
         
     )

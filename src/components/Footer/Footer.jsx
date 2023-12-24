@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <Fragment>
             <footer className="footer">
-                <p>Copyright 2023. Client-side by <a href="">Arafat</a> and Server-side by <a href="">Emmanuel</a> using ReactJs(JavaScript) and Django(Python)</p>
+                <p> &copy; Copyright 2023. Client-side by <a href="" target="_blank">Arafat Abdussalam</a> and Server-side by <a href="" target="_blank">Emmanuel Akolade</a> using ReactJs(JavaScript) and Django(Python).</p>
             </footer>
         </Fragment>
     )

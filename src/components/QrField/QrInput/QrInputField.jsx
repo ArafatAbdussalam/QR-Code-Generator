@@ -1,26 +1,26 @@
 import { Fragment, useRef, useState } from "react";
+
+import "./QrInputField.css"
+
 import Input from "./Input";
 
 import TextButton from "../../UI/Button/TextButton";
 
 const QrInputField = (props) => {
 
-    const {fields, onGenerateQrCode } = props
-
-    const [inputValue, setInputValue] = useState()
-
+    const {fields, onGenerateQrCode} = props
 
     let qrInputValues = [];
 
-    const valueChangeHandler = (event) => {
+    // const valueChangeHandler = (event) => {
 
-        setInputValue(
-            event.target.value
-        )
+    //     setInputValue(
+    //         event.target.value
+    //     )
 
-        qrInputValues.push(event.target.value)
+    //     qrInputValues.push(event.target.value)
 
-    }
+    // }
 
     const qrCodeSubmitHandler = (event) => {
         event.preventDefault()
@@ -29,19 +29,16 @@ const QrInputField = (props) => {
 
         onGenerateQrCode(qrInputValues)
 
-        setInputValue("")
     }
 
     const qrInputs = fields.map(
-        (field, index) => {
+        (field) => {
             return (
                 <Input 
-                    key = {index}
+                    key = {field.id}
                     label = {field.label} 
                     type = {field.type} 
                     required = {field.required} 
-                    onChange = {valueChangeHandler}
-                    value = {inputValue}
                 />
             )
         }
@@ -50,9 +47,9 @@ const QrInputField = (props) => {
 
     return (
         <Fragment>
-            <form name="inputForm" className="input-form" onSubmit={qrCodeSubmitHandler}>
+            <form name="qr-input-form" className="qr-input-form" onSubmit={qrCodeSubmitHandler}>
                 {qrInputs}
-                <TextButton className="input-button" type="submit">Generate</TextButton>
+                <TextButton className="qr-input-button" type="submit">Generate</TextButton>
             </form>
         </Fragment>
     )

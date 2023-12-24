@@ -1,18 +1,42 @@
 .nav {
+    top: 0;
     width: 100%;
     padding: 10px;
+    z-index: 7000;
+    position: fixed;
     background: white;
 }
 
 .nav-items {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.nav-button {
-    background: white;
+.nav-items .logo-text {
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.nav-items .logo-text #qr-text {
+    color: #ffafcc;
+}
+
+.nav-items .nav-item .nav-button {
     color: black;
-    margin: 0;
+    cursor: pointer; 
+    font-size: 20px;
+    font-weight: 400;
+    background: white; 
+}
+
+.nav-item .nav-button:hover {
+    color: white;
+    background: black; 
+}
+
+.nav-item .nav-button:nth-child(1) {
+    margin-right: 30px;
 }

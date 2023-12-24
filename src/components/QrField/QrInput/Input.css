@@ -1,0 +1,17 @@
+.qr-input {
+    margin-left: 20px;
+}
+
+.qr-input label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+    text-align: left;
+    font-weight: 300;
+}
+
+.qr-input input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}

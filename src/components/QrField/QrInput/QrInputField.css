@@ -1,0 +1,19 @@
+.qr-input-form {
+    width: 40%;
+    text-align: center;
+}
+
+.qr-input-button{
+    position: relative;
+}
+
+.qr-input-button:hover {
+    color: black;
+    background: rgba(206, 200, 200, 0.993);
+}
+
+.qr-input-button:active {
+    color: white;
+    background: black;
+}
+

@@ -1,10 +1,15 @@
 * {
-    box-sizing: border-box;
     margin: 0;
-    list-style: none;
-    /* font-size: 16px; */
+    font-family: Helvetica, sans-serif;
+    list-style-type: none;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
-    background: linear-gradient( 65deg, #13829e 10%, #78b5db );
+    background: linear-gradient( 65deg, #13829e 10%, #4ea1d4 );
+}
+
+a {
+    text-decoration: none;
 }
