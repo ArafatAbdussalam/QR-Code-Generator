@@ -1,28 +1,18 @@
+import { useState } from "react";
+
 import "./QrTextButton.css"
 
-import QrFieldData from "../../QrData/QrFieldData";
 import TextButton from "../../../UI/Button/TextButton";
-
 import QrInputModal from "../../../Authentication/AuthModal/QrInputModal";
-import { useState } from "react";
 
 
 
 const QrTextButton = (props) => {
 
-    const { onShowQrInputField } = props
+    const { onShowQrInputField, qrField } = props
 
     const [showAuthModal, setShowAuthModal] = useState(false)
 
-
-    const qrFieldItems = QrFieldData
-
-
-    const qrField = qrFieldItems.map(
-        (item) => {
-            return item
-        }
-    )
 
     const qrButtonText = qrField.map(
         (item) => {
@@ -30,32 +20,30 @@ const QrTextButton = (props) => {
         }
     )
 
-    const qrFieldisAuth = qrField.map(
-        (item) => {
-            return item.isAuthenticated;
-        }
-    )
+    // const authItem = qrField.map(
+    //     (item) => {
+    //         const itemIsAuth = item.isAuthenticated
+    //         return itemIsAuth
+    //     }
+    // )
 
     const showQrinputFieldHandler = () => {
-        console.log(qrButtonText)
 
-        // const checkQrButtonIsAuth = (buttonValueAuth) => {
-        //     if (buttonValueAuth === true) {
-        //         setShowAuthModal(true)
-        //         return;
-        //     }
-    
-        //     if (buttonValueAuth === false) {
-        //         setShowAuthModal(false)
-        //         onShowQrInputField()
-        //     }
+        // console.log(authItem)
+
+        // const itemIsAuth = authItem
+
+        // if(itemIsAuth) {
+        //     setShowAuthModal(true)
+        //     return;
         // }
 
-        // checkQrButtonIsAuth(qrFieldisAuth)
+        // if(itemIsAuth) {
+        //     setShowAuthModal(false)
+        //     onShowQrInputField()
+        // }
 
         onShowQrInputField()
-
-        // if i click on a particular button, i want to be able to check the value
 
 
     }

@@ -19,6 +19,12 @@ const QrFields = () => {
 
     const qrFieldItems = QrFieldData
 
+    const qrField = qrFieldItems.map(
+        (item) => {
+            return item
+        }
+    )
+
 
     const showQrInputHandler = () => {
         setShowInputField(!showInputField)
@@ -110,7 +116,7 @@ const QrFields = () => {
     return(
         <>
 
-            <QrTextButton onShowQrInputField={showQrInputHandler} />
+            <QrTextButton onShowQrInputField={showQrInputHandler} qrField={qrField} />
 
             {showInputField && qrInPutField}
 
