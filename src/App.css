@@ -7,9 +7,14 @@
 }
 
 body {
-    background: linear-gradient( 65deg, #13829e 10%, #4ea1d4 );
+    background: linear-gradient( 65deg, #5fa8d3 10%, #62b6cb );
+    padding-bottom: 90px;
 }
 
 a {
     text-decoration: none;
+}
+
+button {
+    border: none;
 }

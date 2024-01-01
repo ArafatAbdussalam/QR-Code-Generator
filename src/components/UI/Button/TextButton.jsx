@@ -9,7 +9,7 @@ const TextButton = (props) => {
     const classes = ["text-button", className].join(" ")
 
     return (
-        <button type={buttonType} className={classes} onClick={onClick}>{children}</button>
+        <button type={buttonType} className={classes} onClick={onClick} {...props}>{children}</button>
     )
 }
 

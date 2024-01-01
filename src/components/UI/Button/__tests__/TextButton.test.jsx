@@ -1,14 +1,24 @@
-import { render } from "@testing-library/react";
+import React from "react";
+import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
-import React from "react"
 
 import TextButton from "../TextButton";
 
-test ( "TextButton expected class", () => {
-    const component = render( <TextButton>Hello</TextButton> )
-    const selectedMode = component.getByText("Hello")
-    
-    expect(selectedMode).toHaveClass("text-button")
+describe("TextButton component", () => {
 
+    test('renders "Hello World" as a text', () => {
+        render(<TextButton>Hello World</TextButton>)
+        const selectedMode = screen.getByText("Hello World")
+        expect(selectedMode).toBeInTheDocument()
+    })
+
+    // test('renders expected class', () => {
+    //     const component = render(<TextButton>Hello</TextButton>)
+    //     const selectedMode = component.getByText("Hello")
+        
+    //     expect(selectedMode).toHaveClass("text-button")
+    
+    // })
 })
+

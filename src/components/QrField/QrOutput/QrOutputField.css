@@ -1,10 +1,26 @@
 .qr-output-field {
     text-align: center;
-    width: 40%;
+    width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.06);
 }
 
 .qr-output-image {
     width: 200px;
-    height: 200px;
-    border: 1px solid black;
+    border: 1px solid #f1eae4;
+}
+
+.qr-output-button {
+    display: block;
+    font-size: 16px;
+    height: 40px;
+    background: black;
+    color: white;
+    margin: 10px auto;
+}
+
+.qr-output-button a{
+    color: white;
 }

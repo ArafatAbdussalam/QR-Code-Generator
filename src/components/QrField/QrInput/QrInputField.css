@@ -1,15 +1,16 @@
 .qr-input-form {
-    width: 40%;
+    width: 500px;
     text-align: center;
+    padding: 10px 0;
 }
 
-.qr-input-button{
-    position: relative;
+.qr-input-button {
+    font-size: 16px;
 }
 
 .qr-input-button:hover {
     color: black;
-    background: rgba(206, 200, 200, 0.993);
+    background: #f1eae4;
 }
 
 .qr-input-button:active {

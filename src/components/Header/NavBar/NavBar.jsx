@@ -16,7 +16,7 @@ const NavBar = () => {
         <Fragment>
             <nav className="nav">
                 <ul className="nav-items">
-                    <li className="nav-item logo-text"><span id="qr-text">QR</span><span id="code-text">Code</span></li>
+                    <li className="nav-item logo-text"><span id="bubble"></span><span id="qr-text">QR</span><span id="code-text">Code</span></li>
 
                     <div className="nav-item">
                         {!authContext.isLoggedIn && (

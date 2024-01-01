@@ -1,10 +1,10 @@
-import React, { Fragment, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import "./Input.css"
 
 const Input = (props) => {
 
-    const {label, type, required} = props
+    const {label, type, onStoreInputValue, required} = props
 
     const [inputValue, setInputValue] = useState("")
 
@@ -12,16 +12,21 @@ const Input = (props) => {
         setInputValue(event.target.value)
     }
 
+    useEffect(
+        () => {
+            onStoreInputValue(inputValue)
+        }, []
+    )
 
     return (
         
-        <Fragment>
+        <>
             <div className="qr-input">
                 <label>{label}</label>
                 <input type={type} required={required} onChange={valueChangeHandler} value={inputValue}></input>
             </div>
             
-        </Fragment>
+        </>
         
     )
 }

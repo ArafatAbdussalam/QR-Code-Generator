@@ -1,7 +1,7 @@
 .footer {
     bottom: 0;
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     position: fixed;
     color: #e5e5e5;
     margin-top: 80px;
@@ -10,5 +10,5 @@
 }
 
 .footer a {
-    color: #ffafcc;
+    color: #cae9ff;
 }

@@ -1,30 +1,21 @@
-import { Fragment} from "react";
 
 import "./App.css"
 
-import { AuthContextProvider } from "./components/store/auth-context";
-
 import Header from "./components/Header/Header";
-import QrFields from "./components/QrField/QrFields";
+import QrFields from "./components/QrField/QrField/QrFields";
 import Footer from "./components/Footer/Footer";
 
-
+// import SignupForm from "./components/Authentication/SignupForm";
+// import LoginForm from "./components/Authentication/LoginForm";
 
 const App = () => {
 
-      
-
     return (
-        <Fragment>
-
-            <AuthContextProvider>
-                <Header />
-                <QrFields />
-                <Footer />
-
-            </AuthContextProvider>
-            
-        </Fragment>
+        <>
+            <Header />
+            <QrFields />
+            <Footer />
+        </>
     )
 }
 
