@@ -46,7 +46,13 @@
     background: white; 
 }
 
-.nav-item .nav-button:hover {
+.nav-items .nav-item .nav-button a {
+    color: black
+}
+
+
+
+.nav-item .nav-button:hover a {
     color: white;
     background: black; 
 }

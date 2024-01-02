@@ -21,7 +21,6 @@ const SignupForm = () => {
     const authContext = useContext(AuthContext)
 6
     const emailRef = useRef()
-    const passwordRef = useRef()
 
 
     const [emailValue, setEmailValue] = useState("")

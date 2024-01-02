@@ -1,11 +1,9 @@
 import React, { Fragment, useContext, useState, useRef, useEffect } from "react";
-import useAuth from "../hooks/useAuth";
 
 import axios from "axios";
 
 import "./AuthForm.css"
 
-// import AuthContext from "../store/auth-context";
 
 import TextButton from "../UI/Button/TextButton";
 import LoginModal from "./AuthModal/LoginModal";
@@ -14,9 +12,15 @@ const login_url = ""
 
 const LoginForm = () => {
 
-    // const authContext = useContext(AuthContext)
-    const authContext = useAuth()
+    // const { setAuth } = useAuth()
+    // const navigate = useNavigate()
+    // const location = useLocation()
+    // const from = location.state?.from?.pathname || "/";
 
+    // const authContext = useContext(AuthContext)
+    // const authContext = useAuth()
+
+    const emailRef = useRef()
     const errorRef = useRef()
 
     const [emailValue, setEmailValue] = useState("")
@@ -24,6 +28,7 @@ const LoginForm = () => {
 
     const [loginSuccess, setLoginSuccess] = useState(false)
 
+    const errorMessage = ""
 
     const emailChangeHandler = (event) => {
         setEmailValue(event.target.value)
@@ -33,11 +38,11 @@ const LoginForm = () => {
         setPasswordValue(event.target.value)
     }
 
-    useEffect(
-        () => {
-            emailRef.current.focus()
-        }, []
-    )
+    // useEffect(
+    //     () => {
+    //         emailRef.current.focus()
+    //     }, []
+    // )
 
     useEffect(
         () => {
@@ -68,6 +73,7 @@ const LoginForm = () => {
             setEmailValue("")
             setPasswordValue("")
             setLoginSuccess(true)
+            navigate(from, { replace: true })
 
         } catch (error) {
             if (!error?.response) {
@@ -92,11 +98,9 @@ const LoginForm = () => {
 
     return(
         <Fragment>
-            (
-                {
-                    loginSuccess && <LoginModal />
-                }
-            ) : (
+           {
+            loginSuccess && <LoginModal />
+           }
                 <section>
                     <form className="auth-form" onSubmit={loginSubmitHandler}>
                         <div className="form-control">
@@ -109,14 +113,14 @@ const LoginForm = () => {
                             <input id="password" type="password" onChange={passwordChangeHandler} value={passwordValue} required/>
                         </div>
 
-                        <TextButton className="auth-form-button" type="submit" onClick={authContext.login}>Login</TextButton>
+                        <TextButton className="auth-form-button" type="submit">Login</TextButton>
 
                         <p ref={errorRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive">{errorMessage}</p>
                     </form>
 
                     <p className="auth-error-text">You do not have an account? <a>Create new account</a></p> 
                 </section>
-            )
+            
         </Fragment>
     )
 }

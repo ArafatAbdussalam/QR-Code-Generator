@@ -1,4 +1,5 @@
 import { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import "./NavBar.css"
 
@@ -21,14 +22,14 @@ const NavBar = () => {
                     <div className="nav-item">
                         {!authContext.isLoggedIn && (
                             <Fragment>
-                                <Button className="nav-button">Log in</Button>
-                                <Button className="nav-button">Sign up</Button>
+                                <Button className="nav-button"><Link to="/login">Log in</Link></Button>
+                                <Button className="nav-button"><Link to="/signup">Sign up</Link></Button>
                             </Fragment>
                             )
                         } 
 
                         {authContext.isLoggedIn && (
-                            <Button className="nav-button">Log out</Button>
+                            <Button className="nav-button"><Link to="/logout">Log out</Link></Button>
                             )
                         }
                     </div>

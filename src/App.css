@@ -8,7 +8,9 @@
 
 body {
     background: linear-gradient( 65deg, #5fa8d3 10%, #62b6cb );
-    padding-bottom: 90px;
+    padding-bottom: 100px;
+    padding-top: 100px;
+    position: relative;
 }
 
 a {

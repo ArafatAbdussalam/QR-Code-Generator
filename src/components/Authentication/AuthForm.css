@@ -1,4 +1,6 @@
 .auth-form {
+    top: 100px;
+    position: absolute;
     margin: auto;
     display: flex;
     padding: 20px;
