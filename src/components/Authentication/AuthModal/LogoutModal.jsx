@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./AuthModal.css"
 
@@ -11,14 +12,21 @@ const LogoutModal = () => {
 
     const authContext = useContext(AuthContext)
 
+    const navigate = useNavigate()
+    
+    const previousPageHandler = () => {
+        navigate(-1)
+    }
+
+
 
     return(
         <div className="auth-modal">
             <h3>Do you want to logout?</h3>
 
             <div className="logout-modal-buttons">
-                <TextButton className="logout-modal-button">No</TextButton>
-                <TextButton className="logout-modal-button" onclick={authContext.logout}>Yes</TextButton>
+                <TextButton className="logout-modal-button" onClick={previousPageHandler} >No</TextButton>
+                <TextButton className="logout-modal-button" onClick={authContext.logout}>Yes</TextButton>
             </div>
         </div>
 

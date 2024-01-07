@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -10,16 +10,26 @@ import TextButton from "../../UI/Button/TextButton";
 
 const QrInputField = (props) => {
 
-    const {fields, onStoreInputValue, onGenerateQrCode} = props
-    const [qrInputValues, setQrInputValues] = useState([])
+    const {qrInputFieldItem, onGenerateQrCode} = props
+    
+    const [qrInputValues, setQrInputValues] = useState({})
 
 
     const storeInputValueHandler = (qrInputValue) => {
+        // store previous qrInput Value
+        // create an object for all values
         setQrInputValues(
             () => {
-                return [
+                return {
                     qrInputValue
-                ]
+                }
+                // let object1 = {}
+
+                // for(let key in object1){
+                //     qrInputValue = object1(key)
+                // }
+
+                // console.log(object1) 
             }
         )
     }
@@ -27,6 +37,7 @@ const QrInputField = (props) => {
     const qrCodeSubmitHandler = async (event) => {
         event.preventDefault()
 
+        console.log(qrInputValues)
 
         onGenerateQrCode(qrInputValues)
 
@@ -36,7 +47,6 @@ const QrInputField = (props) => {
         //         JSON.stringify({qrInputValues}),
         //         {
         //             headers: {"Content-Type": "application/json"},
-        //             withCredentials: true
         //         }
         //     )
 
@@ -47,9 +57,12 @@ const QrInputField = (props) => {
         // }
     }
 
+    // after it has returned the current field based on the index of the button text
+
+    // the qrInputFieldItem here is based on the currentId which is equal to the buttonId
 
 
-    const qrInputs = fields.map(
+    const qrInputs = qrInputFieldItem.inputFieldValues.map(
         (field) => {
             return (
                 <Input 
@@ -57,20 +70,39 @@ const QrInputField = (props) => {
                     label = {field.label} 
                     type = {field.type} 
                     required = {field.required}
-                    onStoreInputValue = {onStoreInputValue}
+                    onStoreInputValue = {storeInputValueHandler}
                 />
             )
         }
+
     )
+ 
+    // const qrInputs = qrInputFieldItem.map(
+    //     (item) => {
+    //         return item.inputFieldValues.map(
+    //             (field) => {
+    //                 return (
+    //                     <Input 
+    //                         key = {field.id}
+    //                         label = {field.label} 
+    //                         type = {field.type} 
+    //                         required = {field.required}
+    //                         onStoreInputValue = {storeInputValueHandler}
+    //                     />
+    //                 )
+    //             }
+    //         )
+    //     }
+    // )
 
 
     return (
-        <Fragment>
+        <>
             <form className="qr-input-form" onSubmit={qrCodeSubmitHandler}>
                 {qrInputs}
                 <TextButton className="qr-input-button" type="submit">Generate</TextButton>
             </form>
-        </Fragment>
+        </>
     )
 }
 

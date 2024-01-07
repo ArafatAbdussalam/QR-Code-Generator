@@ -4,6 +4,7 @@
     z-index: 9000;
     font-size: 20px;
     max-width: 400px;
+    position: absolute;
     text-align: center;
     align-items: center;
     background: #cae9ff;
@@ -28,7 +29,7 @@
 
 .logout-modal-button:hover {
     color: black;
-    background: rgba(206, 200, 200, 0.993);
+    background: #f1eae4;
 }
 
 .logout-modal-button:active {

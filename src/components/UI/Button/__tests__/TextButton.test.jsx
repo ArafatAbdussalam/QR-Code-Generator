@@ -13,7 +13,7 @@ describe("TextButton component", () => {
         expect(selectedMode).toBeInTheDocument()
     })
 
-    // test('renders expected class', () => {
+    // test('renders expected className', () => {
     //     const component = render(<TextButton>Hello</TextButton>)
     //     const selectedMode = component.getByText("Hello")
         

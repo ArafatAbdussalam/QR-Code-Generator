@@ -21,19 +21,18 @@
 }
 
 .nav-items .logo-text #qr-text {
-    color: #cae9ff;
-    /* color: #ffafcc; */
+    /* color: rgb(144, 192, 236);;
+    color: #cae9ff; */
+    color: #f74485;
 }
 
 .nav-items .logo-text #bubble {
     display: inline-block;
-    background: #cae9ff;
     width: 8px;
     height: 8px;
     border-radius: 50%; 
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1), 
-    inset 0px 10px 30px 5px rgb(144, 192, 236);
-    
+    inset 0px 10px 30px 5px #f74485;
 }
 
 .nav-items .nav-item .nav-button {
@@ -47,16 +46,27 @@
 }
 
 .nav-items .nav-item .nav-button a {
-    color: black
+    color: black;
 }
 
+.nav-items .nav-item .nav-button:hover a {
+    color: white;
+}
 
-
-.nav-item .nav-button:hover a {
+.nav-item .nav-button:hover {
     color: white;
     background: black; 
 }
 
 .nav-item .nav-button:nth-child(1) {
     margin-right: 30px;
+}
+
+.nav-item .nav-button:nth-child(2) {
+    background: black;
+    color: white;
+}
+
+.nav-item .nav-button:nth-child(2) a {
+    color: white;
 }

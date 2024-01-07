@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import QrFieldData from "../QrData/QrFieldData";
 import QrTextButton from "./QrTextButton/QrTextButton";
+import QrInputModal from "../../Authentication/AuthModal/QrInputModal";
 import QrInputField from "../QrInput/QrInputField";
 import Loading from "../../Loading/Loading";
 import QrOutputField from "../QrOutput/QrOutputField";
@@ -11,50 +12,52 @@ import qrImageSample from "./Image.png"
 const QrFields = () => {
 
     const [showInputField, setShowInputField] = useState(false)
-    const [qrInputValues, setQrInputValues] = useState([])
-
+    const [qrFieldIsAuth, setQrFieldIsAuth] = useState(false)
+    const [qrInputFieldItem, setQrInputFieldItem] = useState({})
     const [showQrOutputField, setShowQrOutputField] = useState(false)
     const [isQrCodeGenerated, setIsQrCodeGenerated] = useState(false)
+    const [qrOutputErrorMessage, setQrOutputErrorMessage] = useState("")
     const [qrImage, setQrImage] = useState(null)
+
 
     const qrFieldItems = QrFieldData
 
-    const qrField = qrFieldItems.map(
-        (item) => {
-            return item
+
+    const showQrInputHandler = (buttonId) => {
+
+        const currentButtonIndex = qrFieldItems[buttonId - 1]
+        const currentQrInputFieldItem = currentButtonIndex
+
+        const isAuth = currentQrInputFieldItem.isAuthenticated
+
+        if(isAuth) {
+            setQrFieldIsAuth(true)
+            setShowInputField(false)
+            setShowQrOutputField(false)
+            return;
         }
-    )
 
+        if(!isAuth) {
+            setQrFieldIsAuth(false)
+            setShowInputField(true)
+        }
+    
 
-    const showQrInputHandler = () => {
-        setShowInputField(!showInputField)
+        setQrInputFieldItem(
+            currentQrInputFieldItem
+        )
+
+        setShowInputField(true)
         setShowQrOutputField(false)
     }
 
-
-    const qrFields = qrFieldItems.map(
-        (item) => {
-            return item;
-        }
-    )
-
-    const storeInputValueHandler = (qrInputValue) => {
-        setQrInputValues(
-            () => {
-                return [
-                    qrInputValue
-                ]
-            }
-        )
-    }
-
+    
     
     const generateQrCodeHandler = async (inputValues) => {
         setShowQrOutputField(true)
 
         setIsQrCodeGenerated(false)
         console.log("qr code is generating")
-        console.log(qrInputValues)
 
         setQrImage(qrImageSample)
 
@@ -62,10 +65,8 @@ const QrFields = () => {
             () => {
                 setIsQrCodeGenerated(true)
                 console.log("qr code is generated")
-            }, 4000
+            }, 5000
         )
-
-
 
         // try {
         //     const url = ""
@@ -82,30 +83,20 @@ const QrFields = () => {
 
         //     setQrImage(qrImage)
 
-        //     setIsQrCodeGenerating(false)
-        //     setIsQrCodeGenerated(true)
-
-
+        // setShowQrOutputField(true)
+        // setIsQrCodeGenerated(true)
+        
         // } catch (error) {
-
-        // }
+            // if(error){
+            // // setQrOutputErrorMessage("Unable to load QrCode Image. Try again")
+            // }
+            // setIsQrCodeGenerated(false)
+            // }
     }
 
 
-
-
-
-    const qrInPutField = qrFields.map(
-        (inputField) => {
-            return (
-                <QrInputField key={inputField.id} fields={inputField.inputFieldValues} onGenerateQrCode={generateQrCodeHandler} onStoreInputValue={storeInputValueHandler} />
-            )
-        }
-    )
-
-
     const hideQrCodeField= () => {
-        setTimeout(
+        setTimeout( 
             () => {
                 setShowInputField(false)
                 setShowQrOutputField(false)
@@ -115,10 +106,11 @@ const QrFields = () => {
 
     return(
         <>
+            <QrTextButton onShowQrInputField={showQrInputHandler} qrButtonFieldItem={qrFieldItems} /> 
 
-            <QrTextButton onShowQrInputField={showQrInputHandler} qrField={qrField} />
+            {qrFieldIsAuth && <QrInputModal />}
 
-            {showInputField && qrInPutField}
+            {showInputField && <QrInputField onGenerateQrCode={generateQrCodeHandler} qrInputFieldItem={qrInputFieldItem} /> }
 
             {showQrOutputField && !isQrCodeGenerated && <Loading />}
             {showQrOutputField && isQrCodeGenerated && <QrOutputField qrImage={qrImage} onDownloadQrCode={hideQrCodeField} /> }

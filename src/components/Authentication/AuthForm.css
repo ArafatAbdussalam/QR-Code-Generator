@@ -1,5 +1,4 @@
 .auth-form {
-    top: 100px;
     position: absolute;
     margin: auto;
     display: flex;
@@ -8,7 +7,7 @@
     max-width: 400px;
     background: #cae9ff;
     flex-direction: column;
-}
+} 
 
 .form-control {
     width: 100%;
@@ -51,6 +50,18 @@
     background: black;
 }
 
+.valid {
+    color: rgb(5, 238, 5);
+}
+
+.invalid {
+    color: rgb(243, 5, 5);
+}
+
+.instruction {
+    color: palevioletred;
+}
+
 .redirect, .auth-error-text {
     margin: 5px 0;
 }
@@ -63,4 +74,25 @@
 
 .auth-error-text a:active {
     color: #cae9ff;
+}
+
+.error-message {
+    padding: 5px 0;
+    margin-top: 15px;
+    color: rgb(243, 5, 5);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.hide {
+    display: none;
+}
+
+.cancel-button {
+    width: 60px;
+    font-size: 16px;
+    padding: 5px;
+    text-align: left;
+    margin-top: 15px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.06);
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import "./QrInputModal.css"
 
@@ -6,11 +6,11 @@ import "./QrInputModal.css"
 const QrInputModal = () => {
 
     return(
-        <Fragment>
+        <>
             <div className="qr-input-modal">
                 <p>works for loggedin users only</p>
             </div>
-        </Fragment>
+        </>
     )
 }
 

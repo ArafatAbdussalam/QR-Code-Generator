@@ -1,16 +1,15 @@
 * {
     margin: 0;
-    font-family: Helvetica, sans-serif;
     list-style-type: none;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    font-family: Helvetica, sans-serif;
 }
 
 body {
-    background: linear-gradient( 65deg, #5fa8d3 10%, #62b6cb );
-    padding-bottom: 100px;
     padding-top: 100px;
-    position: relative;
+    padding-bottom: 100px;
+    background: linear-gradient( 63deg, #5fa8d3, #62b6cb );
 }
 
 a {
