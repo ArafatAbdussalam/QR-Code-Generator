@@ -1,8 +1,15 @@
  .qr-button {
   margin: 10px;
+  position: relative;
   background: #cae9ff;
   min-width: 70px;
   height: 40px;
   font-size: 18px;
   font-weight: 400;
+}
+
+.qr-input-modal {
+  position: absolute;
+  left: 10px;
+  top: -10px;
 }

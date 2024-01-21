@@ -14,6 +14,12 @@
     justify-content: space-between;
 }
 
+/* @media (max-width: 440px) {
+    .nav {}
+    .nav-items {}
+    .nav-item {}
+} */
+
 .nav-items .logo-text {
     cursor: pointer;
     font-size: 30px;
@@ -21,9 +27,7 @@
 }
 
 .nav-items .logo-text #qr-text {
-    /* color: rgb(144, 192, 236);;
-    color: #cae9ff; */
-    color: #f74485;
+    color: rgb(245, 98, 0);
 }
 
 .nav-items .logo-text #bubble {
@@ -32,7 +36,7 @@
     height: 8px;
     border-radius: 50%; 
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1), 
-    inset 0px 10px 30px 5px #f74485;
+    inset 0px 10px 30px 5px rgb(245, 98, 0);
 }
 
 .nav-items .nav-item .nav-button {

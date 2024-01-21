@@ -2,7 +2,7 @@ import React from "react";
 
 import "./QrOutputField.css"
 
-import TextButton from "../../UI/Button/TextButton";
+import TextButton from "../../UI/Button/TextButton/TextButton";
 
 const QrOutputField = (props) => {
 

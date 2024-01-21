@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { createPortal } from "react-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +10,7 @@ import "./AuthForm.css"
 import axios from "./api/auth-axios-api";
 import AuthContext from "../store/auth-context";
 
-import TextButton from "../UI/Button/TextButton";
+import TextButton from "../UI/Button/TextButton/TextButton";
 import SignupModal from "./AuthModal/SignupModal";
 
 
@@ -25,6 +26,8 @@ const SignupForm = () => {
     const authContext = useContext(AuthContext)
 
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/";
 
     const emailRef = useRef()
 
@@ -132,75 +135,74 @@ const SignupForm = () => {
         setPasswordValue("")
     }
 
-    return( 
+    return createPortal( 
         <>
             { signupSuccess && <SignupModal />}
 
             { !signupSuccess && (
-                <section>
-                    <form className="auth-form" onSubmit={signupSubmitHandler}>
-                        <div className="form-control">
-                            <label htmlFor="email">Email
-                                <FontAwesomeIcon icon={faCheck} className={emailIsValid ? "valid" : "hide"} />
-                                <FontAwesomeIcon icon={faTimes} className={emailIsValid || !emailValue ? "hide" : "invalid"} />
-                            </label>
-                            <input 
-                                ref={emailRef} id="email" type="email" onChange={emailChangeHandler} value={emailValue} autoComplete="on" aria-describedby="email-info" 
-                                aria-invalid = {emailIsValid ? "false" : "true"} onFocus={()=>setEmailFocus(true)} onBlur={()=>setEmailFocus(false)} required
-                            />
-                            <p id="email-info" className={emailFocus && email && !emailIsValid? "instruction" : "hide"}>
-                                <FontAwesomeIcon icon={faInfoCircle} />
-                                3 to 28 characters. Must include <span aria-label="at sign">@</span>
-                            </p>
-                        </div>
-
-                        <div className="form-control">
-                            <label htmlFor="password">
-                                Password
-                                <FontAwesomeIcon icon={faCheck} className={passwordIsValid ? "valid" : "hide"} />
-                                <FontAwesomeIcon icon={faTimes} className={passwordIsValid || !passwordValue ? "hide" : "invalid"} />
-                            </label>
-                            <input 
-                                id="password" type="password" onChange={passwordChangeHandler} value={passwordValue} aria-invalid={passwordIsValid ?"false":"true"} 
-                                aria-describedby="password-info" onFocus={()=>setPasswordFocus(true)} onBlur={()=>setPasswordFocus(false)} required
-                            />
-                            <p id="password-info" className={passwordFocus && !passwordIsValid? "instruction" : "hide"}>
+                <form role="form" className="auth-form" onSubmit={signupSubmitHandler}>
+                    <div className="form-control">
+                        <label htmlFor="email">Email
+                            <FontAwesomeIcon icon={faCheck} className={emailIsValid ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={emailIsValid || !emailValue ? "hide" : "invalid"} />
+                        </label>
+                        <input 
+                            ref={emailRef} id="email" type="email" onChange={emailChangeHandler} value={emailValue} autoComplete="on" aria-describedby="email-info" 
+                            aria-invalid = {emailIsValid ? "false" : "true"} onFocus={()=>setEmailFocus(true)} onBlur={()=>setEmailFocus(false)} required
+                        />
+                        <p id="email-info" className={emailFocus && email && !emailIsValid? "instruction" : "hide"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                                7 to 25 characters.<br/>Must include uppercase and lowercase letters, a number and a special character.<br/>
-                                Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span>
-                                <span aria-label="hashtag">#</span><span aria-label="dollar sign">$</span><span aria-label="percent">%</span>
-                            </p>
-                        </div> 
-                        <div className="form-control">
-                            <label htmlFor="confirm-password">
-                                Confirm Password
-                                <FontAwesomeIcon icon={faCheck} className={matchPasswordIsValid && matchPasswordValue ? "valid" : "hide"} />
-                                <FontAwesomeIcon icon={faTimes} className={matchPasswordIsValid|| !matchPasswordValue  ? "hide" : "invalid"} />
-                            </label>
-                            <input 
-                                id="confirm-password" type="password" onChange={matchPasswordChangeHandler} value={matchPasswordValue} aria-invalid={matchPasswordIsValid ? "false" : "true"} 
-                                aria-describedby="confirm-password-info" onFocus={()=>setMatchPasswordFocus(true)} onBlur={()=>setMatchPasswordFocus(false)} required
-                            />
-                            <p id="confirm-password-info" className={matchPasswordFocus && !matchPasswordIsValid ? "instructions" : "hide"}>
-                                <FontAwesomeIcon icon={faInfoCircle} />
-                                Must match previous password entered.
-                            </p>
-                        </div>
+                            Must include <span aria-label="at sign">@</span>
+                        </p>
+                    </div>
 
-                        <TextButton disabled={!emailIsValid || !passwordIsValid || !matchPasswordIsValid ? "true" : "false"}
-                            className="auth-form-button" type="submit" onClick={authContext.signup}>
-                                Sign up
-                        </TextButton>
+                    <div className="form-control">
+                        <label htmlFor="password">
+                            Password
+                            <FontAwesomeIcon icon={faCheck} className={passwordIsValid ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={passwordIsValid || !passwordValue ? "hide" : "invalid"} />
+                        </label>
+                        <input 
+                            id="password" type="password" onChange={passwordChangeHandler} value={passwordValue} aria-invalid={passwordIsValid ?"false":"true"} 
+                            aria-describedby="password-info" onFocus={()=>setPasswordFocus(true)} onBlur={()=>setPasswordFocus(false)} required
+                        />
+                        <p id="password-info" className={passwordFocus && !passwordIsValid? "instruction" : "hide"}>
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                            7 to 25 characters. Must include uppercase and lowercase letters, a number and a special character. 
+                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span>
+                            <span aria-label="hashtag">#</span><span aria-label="dollar sign">$</span><span aria-label="percent">%</span>
+                        </p>
+                    </div> 
+                    <div className="form-control">
+                        <label htmlFor="confirm-password">
+                            Confirm Password
+                            <FontAwesomeIcon icon={faCheck} className={matchPasswordIsValid && matchPasswordValue ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={matchPasswordIsValid|| !matchPasswordValue  ? "hide" : "invalid"} />
+                        </label>
+                        <input 
+                            id="confirm-password" type="password" onChange={matchPasswordChangeHandler} value={matchPasswordValue} aria-invalid={matchPasswordIsValid ? "false" : "true"} 
+                            aria-describedby="confirm-password-info" onFocus={()=>setMatchPasswordFocus(true)} onBlur={()=>setMatchPasswordFocus(false)} required
+                        />
+                        <p id="confirm-password-info" className={matchPasswordFocus && !matchPasswordIsValid ? "instruction" : "hide"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            Must match previous password entered.
+                        </p>
+                    </div>
 
-                            <p>Already created an account? <br/><Link to="/login">Log in</Link></p>
-                            <p aria-live="assertive">{errorMessage}</p>
+                    <TextButton disabled={!emailIsValid || !passwordIsValid || !matchPasswordIsValid ? true : false}
+                        className="auth-form-button" type="submit" onClick={authContext.signup}>
+                            Sign up
+                    </TextButton>
 
-                            <button className="cancel-button" onClick={cancelPageHandler}>Cancel</button>
-                    </form>
-            </section>
+                        <p className="redirect">Already created an account? <Link to="/login">Log in</Link></p>
+                        <p aria-live="assertive">{errorMessage}</p>
+
+                        <button className="cancel-button" onClick={cancelPageHandler}>Cancel</button>
+                </form>
             )}
 
-        </>
+        </>,
+        document.getElementById("authPage")
     )
 }
 

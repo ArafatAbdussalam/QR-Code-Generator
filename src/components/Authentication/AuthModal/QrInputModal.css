@@ -1,10 +1,11 @@
 .qr-input-modal {
-    left: inherit;
     height: 30px;
     margin: auto;
     padding: 5px;
     z-index: 300;
-    font-size: 16px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
     position: absolute;
     text-align: center;
     background: #d7d9ce;

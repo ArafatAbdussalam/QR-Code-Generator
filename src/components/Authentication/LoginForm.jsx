@@ -1,17 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-
-import "./AuthForm.css"
-
-import TextButton from "../UI/Button/TextButton";
-import LoginModal from "./AuthModal/LoginModal";
-
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 
+import "./AuthForm.css"
+
+import TextButton from "../UI/Button/TextButton/TextButton";
+
+
 
 const login_url = ""
-
 
 
 const LoginForm = () => {
@@ -98,31 +97,30 @@ const LoginForm = () => {
     }
 
 
-    return(
+    return createPortal(
         <>
-            <section>
-                <form className="auth-form" onSubmit={loginSubmitHandler}>
-                    <div className="form-control">
-                        <label htmlFor="email">Email</label>
-                        <input ref={emailRef} id="email" type="email" onChange={emailChangeHandler} value={emailValue} autoComplete="on" required/>
-                    </div>
+            <form role="form" className="auth-form" onSubmit={loginSubmitHandler}>
+                <div className="form-control">
+                    <label htmlFor="email">Email</label>
+                    <input ref={emailRef} id="email" type="email" onChange={emailChangeHandler} value={emailValue} required/>
+                </div>
 
-                    <div className="form-control">
-                        <label htmlFor="password">Password</label>
-                        <input id="password" type="password" onChange={passwordChangeHandler} value={passwordValue} required/>
-                    </div>
+                <div className="form-control">
+                    <label htmlFor="password">Password</label>
+                    <input id="password" type="password" onChange={passwordChangeHandler} value={passwordValue} required/>
+                </div>
 
-                    <TextButton className="auth-form-button" type="submit">Login</TextButton>
+                <TextButton className="auth-form-button" type="submit">Login</TextButton>
 
-                    <p className="auth-error-text">You do not have an account? <br/> <Link to="/signup">Sign up</Link></p> 
+                <p className="redirect">You do not have an account? <Link to="/signup" role="link">Sign up</Link></p> 
 
-                    <p ref={errorRef} className={errorMessage ? "error-message" : "hide" } aria-live="assertive">{errorMessage}</p>
+                <p ref={errorRef} className={errorMessage ? "error-message" : "hide"} aria-live="assertive">{errorMessage}</p>
 
-                    <button className="cancel-button" onClick={cancelPageHandler}>Cancel</button>
-                </form>   
-            </section>
+                <button className="cancel-button" onClick={cancelPageHandler}>Cancel</button>
+            </form>   
             
-        </>
+        </>,
+        document.getElementById("authPage")
     )
 }
 

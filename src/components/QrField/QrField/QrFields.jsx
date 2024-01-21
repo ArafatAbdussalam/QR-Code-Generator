@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 import QrFieldData from "../QrData/QrFieldData";
-import QrTextButton from "./QrTextButton/QrTextButton";
+import QrTextButton from "../QrTextButton/QrTextButton"
 import QrInputModal from "../../Authentication/AuthModal/QrInputModal";
 import QrInputField from "../QrInput/QrInputField";
 import Loading from "../../Loading/Loading";
 import QrOutputField from "../QrOutput/QrOutputField";
 
-import qrImageSample from "./Image.png"
+import qrSampleImage from  "./sampleImage.png"
 
 const QrFields = () => {
 
@@ -28,16 +28,16 @@ const QrFields = () => {
         const currentButtonIndex = qrFieldItems[buttonId - 1]
         const currentQrInputFieldItem = currentButtonIndex
 
-        const isAuth = currentQrInputFieldItem.isAuthenticated
+        const qrFieldIsAuth = currentQrInputFieldItem.isAuthenticated
 
-        if(isAuth) {
+        if(qrFieldIsAuth) {
             setQrFieldIsAuth(true)
             setShowInputField(false)
             setShowQrOutputField(false)
             return;
         }
 
-        if(!isAuth) {
+        if(!qrFieldIsAuth) {
             setQrFieldIsAuth(false)
             setShowInputField(true)
         }
@@ -59,7 +59,7 @@ const QrFields = () => {
         setIsQrCodeGenerated(false)
         console.log("qr code is generating")
 
-        setQrImage(qrImageSample)
+        setQrImage(qrSampleImage)
 
         setTimeout(
             () => {
@@ -92,6 +92,7 @@ const QrFields = () => {
             // }
             // setIsQrCodeGenerated(false)
             // }
+        // }
     }
 
 
@@ -108,7 +109,7 @@ const QrFields = () => {
         <>
             <QrTextButton onShowQrInputField={showQrInputHandler} qrButtonFieldItem={qrFieldItems} /> 
 
-            {qrFieldIsAuth && <QrInputModal />}
+            {qrFieldIsAuth && <QrInputModal className="qr-input-modal" />}
 
             {showInputField && <QrInputField onGenerateQrCode={generateQrCodeHandler} qrInputFieldItem={qrInputFieldItem} /> }
 

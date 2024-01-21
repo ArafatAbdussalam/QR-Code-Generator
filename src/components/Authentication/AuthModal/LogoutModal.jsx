@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 
 import "./AuthModal.css"
 
 import AuthContext from "../../store/auth-context";
 
-import TextButton from "../../UI/Button/TextButton";
+import TextButton from "../../UI/Button/TextButton/TextButton";
 
 
 const LogoutModal = () => {
 
     const authContext = useContext(AuthContext)
+
+    const clickHandler = () => {}
 
     const navigate = useNavigate()
     
@@ -20,16 +23,16 @@ const LogoutModal = () => {
 
 
 
-    return(
-        <div className="auth-modal">
-            <h3>Do you want to logout?</h3>
+    return createPortal(
+        <div className="auth-modal" aria-live="polite">
+            <h3 className="auth-modal--main--heading">Do you want to logout?</h3>
 
-            <div className="logout-modal-buttons">
-                <TextButton className="logout-modal-button" onClick={previousPageHandler} >No</TextButton>
-                <TextButton className="logout-modal-button" onClick={authContext.logout}>Yes</TextButton>
+            <div className="auth-modal--buttons">
+                <TextButton className="auth-modal--button" onClick={previousPageHandler} tabIndex = "10">No</TextButton>
+                <TextButton className="auth-modal--button" onClick={clickHandler} tabIndex="11">Yes</TextButton>
             </div>
-        </div>
-
+        </div>,
+        document.getElementById("authPage")
     )
 }
 

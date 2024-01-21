@@ -1,12 +1,10 @@
-
 import { Link } from "react-router-dom";
 
 import "./NavBar.css"
 
 import useAuth from "../../hooks/useAuth";
 
-import Button from "../../UI/Button/TextButton";
-
+import TextButton from "../../UI/Button/TextButton/TextButton";
 
 
 const NavBar = () => {
@@ -22,14 +20,14 @@ const NavBar = () => {
                     <div className="nav-item">
                         {!auth && (
                             <>
-                                <Button className="nav-button"><Link to="/login">Log in</Link></Button>
-                                <Button className="nav-button"><Link to="/signup">Sign up</Link></Button>
+                                <TextButton tabIndex="-1000" className="nav-button"><Link tabIndex="3" to="/login">Log in</Link></TextButton>
+                                <TextButton tabIndex="-1000" className="nav-button"><Link tabIndex="4" to="/signup">Sign up</Link></TextButton>
                             </>
                             )
                         } 
 
-                        {auth&& (
-                            <Button className="nav-button"><Link to="/logout">Log out</Link></Button>
+                        {auth && (
+                            <TextButton tabIndex="-1000" className="nav-button"><Link tabIndex="5" to="/logout">Log out</Link></TextButton>
                             )
                         }
                     </div>

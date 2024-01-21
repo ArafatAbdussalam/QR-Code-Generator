@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <>
             <footer className="footer">
-                <p> &copy; Copyright {currentYear}. Client-side by <a href="" target="_blank">Arafat Abdussalam</a> and Server-side by <a href="" target="_blank">Emmanuel Akolade</a> using ReactJs(JavaScript) and Django(Python).</p>
+                <p> &copy; Copyright {currentYear}. Client-side by <a href="https://www.example.com" target="_blank">Arafat Abdussalam</a> and Server-side by <a href="https://www.example.com" target="_blank">Emmanuel Akolade</a> using ReactJs(JavaScript) and Django(Python).</p>
             </footer>
         </>
     )

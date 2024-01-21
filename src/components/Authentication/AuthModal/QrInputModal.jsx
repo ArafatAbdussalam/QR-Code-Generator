@@ -7,8 +7,8 @@ const QrInputModal = () => {
 
     return(
         <>
-            <div className="qr-input-modal">
-                <p>works for loggedin users only</p>
+            <div className="qr-input-modal" aria-live="polite">
+                <p>works for logged-in users only</p>
             </div>
         </>
     )

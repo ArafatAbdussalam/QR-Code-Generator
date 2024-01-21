@@ -1,13 +1,15 @@
 import React from "react";
+import { createPortal } from "react-dom";
 
 import "./AuthModal.css"
 
 const LoginModal = () => {
 
-    return (
-        <div className="auth-modal">
+    return createPortal(
+        <div className="auth-modal" aria-live="polite">
             <h3>Login Successful</h3>
-        </div>
+        </div>,
+        document.getElementById("authPage")
     )
 }
 

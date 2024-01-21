@@ -1,16 +1,26 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import '@testing-library/jest-dom'
-
 
 import Footer from "../Footer";
 
-describe("Footer component", () => {
+describe('Footer Component', () => {
 
-    test('renders "Hello World" as a text', () => {
-        render(<Footer />)
-        const selectedMode = screen.getByText("copyright")
-        expect(selectedMode).toBeInTheDocument()
+    const component = render(<Footer />)
+
+    test('should render names of developers', () => {
+        const developerOne = component.getByText(/emmanuel akolade/i)
+        const developerTwo = component.getByText(/arafat abdussalam/i)
+
+        expect(developerOne).toBeInTheDocument()
+        expect(developerTwo).toBeInTheDocument()
+
+        expect(developerOne).toHaveAttribute("href", "https://www.example.com")
+        expect(developerTwo).toHaveAttribute("href", "https://www.example.com")
+
+    })
+
+    test(`should render current year`, () => {
+        
     })
 
 })
