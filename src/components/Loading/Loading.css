@@ -1,10 +1,16 @@
 .loading {
-    margin: auto;
+    margin: 40px auto;
     padding: 20px;
     overflow: hidden;
     width: 400px;
     background-color: rgba(0, 0, 0, 0.06);
   }
+
+.qr-loading-heading {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
 
 .loading-items{
     width: 80%;

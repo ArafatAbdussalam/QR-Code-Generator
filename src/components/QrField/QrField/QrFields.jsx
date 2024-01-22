@@ -11,10 +11,11 @@ import qrSampleImage from  "./sampleImage.png"
 
 const QrFields = () => {
 
-    const [showInputField, setShowInputField] = useState(false)
+    const [showQrInputField, setShowQrInputField] = useState(false)
     const [qrFieldIsAuth, setQrFieldIsAuth] = useState(false)
     const [qrInputFieldItem, setQrInputFieldItem] = useState({})
     const [showQrOutputField, setShowQrOutputField] = useState(false)
+    const [isQrCodeGenerating, setIsQrCodeGenerating] = useState(false)
     const [isQrCodeGenerated, setIsQrCodeGenerated] = useState(false)
     const [qrOutputErrorMessage, setQrOutputErrorMessage] = useState("")
     const [qrImage, setQrImage] = useState(null)
@@ -32,14 +33,14 @@ const QrFields = () => {
 
         if(qrFieldIsAuth) {
             setQrFieldIsAuth(true)
-            setShowInputField(false)
+            setShowQrInputField(false)
             setShowQrOutputField(false)
             return;
         }
 
         if(!qrFieldIsAuth) {
             setQrFieldIsAuth(false)
-            setShowInputField(true)
+            setShowQrInputField(true)
         }
     
 
@@ -47,7 +48,7 @@ const QrFields = () => {
             currentQrInputFieldItem
         )
 
-        setShowInputField(true)
+        setShowQrInputField(true)
         setShowQrOutputField(false)
     }
 
@@ -55,7 +56,8 @@ const QrFields = () => {
     
     const generateQrCodeHandler = async (inputValues) => {
         setShowQrOutputField(true)
-
+        setShowQrInputField(false)
+        setIsQrCodeGenerating(true)
         setIsQrCodeGenerated(false)
         console.log("qr code is generating")
 
@@ -63,6 +65,9 @@ const QrFields = () => {
 
         setTimeout(
             () => {
+                setShowQrOutputField(true)
+                setShowQrInputField(false)
+                setIsQrCodeGenerating(false)
                 setIsQrCodeGenerated(true)
                 console.log("qr code is generated")
             }, 5000
@@ -99,9 +104,9 @@ const QrFields = () => {
     const hideQrCodeField= () => {
         setTimeout( 
             () => {
-                setShowInputField(false)
+                setShowQrInputField(false)
                 setShowQrOutputField(false)
-            }, 5000
+            }, 6000
         )
     }
 
@@ -111,10 +116,10 @@ const QrFields = () => {
 
             {qrFieldIsAuth && <QrInputModal className="qr-input-modal" />}
 
-            {showInputField && <QrInputField onGenerateQrCode={generateQrCodeHandler} qrInputFieldItem={qrInputFieldItem} /> }
+            {showQrInputField && <QrInputField onGenerateQrCode={generateQrCodeHandler} qrInputFieldItem={qrInputFieldItem} /> }
 
-            {showQrOutputField && !isQrCodeGenerated && <Loading />}
-            {showQrOutputField && isQrCodeGenerated && <QrOutputField qrImage={qrImage} onDownloadQrCode={hideQrCodeField} /> }
+            {!showQrInputField && showQrOutputField && isQrCodeGenerating && !isQrCodeGenerated && <Loading />}
+            {!showQrInputField && showQrOutputField && !isQrCodeGenerating && isQrCodeGenerated && <QrOutputField qrImage={qrImage} onDownloadQrCode={hideQrCodeField} /> }
         </>
     )
 }

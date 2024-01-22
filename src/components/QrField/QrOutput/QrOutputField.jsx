@@ -12,6 +12,7 @@ const QrOutputField = (props) => {
     return (
         <>
             <div className="qr-output-field">
+                <h3 className="qr-output-field-heading" aria-live="polite">Qr Code Image is generated</h3>
                 <img className="qr-output-image" alt="qr code image" src={qrImage} />
                 <TextButton className="qr-output-button" onClick={onDownloadQrCode}><a href={qrImage} download>Download QR Code</a></TextButton>
             </div>    

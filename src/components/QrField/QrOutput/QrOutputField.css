@@ -7,6 +7,11 @@
     background: rgba(0, 0, 0, 0.06);
 }
 
+.qr-output-field-heading {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
 .qr-output-image {
     width: 300px;
     height: 300px;
