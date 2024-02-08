@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,7 +15,7 @@ import SignupModal from "./AuthModal/SignupModal";
 
 
 // const username_regex = /^[a-zA-Z][a-zA-Z0-9-_]{4,23}$/;
-const email_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@]).{3,28}$/;
+const email_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@]).{3,}$/;
 const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{7,25}$/;
 
 const signup_url = "/signup"

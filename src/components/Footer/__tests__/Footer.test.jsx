@@ -5,9 +5,9 @@ import Footer from "../Footer";
 
 describe('Footer Component', () => {
 
-    const component = render(<Footer />)
-
     test('should render names of developers', () => {
+        const component = render(<Footer />)
+
         const developerOne = component.getByText(/emmanuel akolade/i)
         const developerTwo = component.getByText(/arafat abdussalam/i)
 
@@ -16,11 +16,17 @@ describe('Footer Component', () => {
 
         expect(developerOne).toHaveAttribute("href", "https://www.example.com")
         expect(developerTwo).toHaveAttribute("href", "https://www.example.com")
-
-    })
-
-    test(`should render current year`, () => {
         
+
     })
+
+    // test(`should render current year`, () => {
+    //     const year = new Date().getFullYear()
+    //     const component = render(<Footer />)
+
+    //     const selectedMode = component.getByText(`${year}`)
+    //     expect(selectedMode).toBeDateString()
+
+    // })
 
 })

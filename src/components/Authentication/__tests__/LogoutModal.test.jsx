@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react"
+import { fireEvent, render } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 import { BrowserRouter } from "react-router-dom";
@@ -7,13 +7,22 @@ import TextButton from "../../UI/Button/TextButton/TextButton"
 
 
 
-jest.mock("../../UI/Button/TextButton/TextButton")
-
 const component = render(
     <BrowserRouter>
         <LogoutModal/>
     </BrowserRouter>
 )
+
+jest.mock("../../UI/Button/TextButton/TextButton")
+
+const mockChildComponent = ""
+
+const container = document.createElement("div")
+document.body.appendChild(container)
+ReactDOM.createPortal(<LogoutModal />)
+const selectedMode = container.innerHTML
+expect(selectedMode).toMatchSnapshot()
+expect(container).toBeInTheDocument()
 
 
 describe('LogoutModal component', () => {
@@ -24,14 +33,22 @@ describe('LogoutModal component', () => {
     })
 
     test(`should render textbutton child component with length of 2`, () => {
-        
+        const selectedMode = component.getAllByRole("button")
+        expect(selectedMode).toHaveLength(2)
+    })
+
+    test(`should render textButton child component with name "Yes" `, () => {   
+        const selectedMode = component.getByText(/yes/i) 
+        fireEvent(selectedMode, new MouseEvent("click"))  
+        expect(screen.findByText(/do you want to logout?/i)).toBeNull()  
     })
 
     test(`should render textButton child component with name "No" `, () => {        
-        expect(TextButton).toHaveBeenCalledWith({ children: "No"}, expect.anything())
-    })
-
-    test(`should render textButton child component with name "Yes" `, () => {        
-        expect(TextButton).toHaveBeenCalledWith({ children: "Yes"}, expect.anything())
+        const selectedMode = component.getByText(/no/i) 
+        fireEvent(selectedMode, new MouseEvent("click")) 
+        expect(screen.findByText(/do you want to logout?/i)).toBeNull() 
     })
 })
+
+
+

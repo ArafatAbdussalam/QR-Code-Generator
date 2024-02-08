@@ -19,20 +19,35 @@ describe(`SignupForm Component`, () => {
         expect(selectedMode).toBeInTheDocument()
     })
 
-
-    test(`should render label text with "Email", "Password" and "Confirm Password" `, () => {
-        const emailLabelText = component.getByLabelText(/email/i)
-        const passwordLabelText = component.getByLabelText(/password/i)
-        const confirmPasswordLabelText = component.getByLabelText(/confirm password/i)
-
-        expect(emailLabelText).toBeInTheDocument()
-        expect(passwordLabelText).toBeInTheDocument()
-        expect(confirmPasswordLabelText).toBeInTheDocument()
+    test('', () => {
+        const selectedMode = component.getByLabelText(/email/i)
+        fireEvent.change(selectedMode, { target: {value: "sampleemail@gmail.com"}})
+        expect(screen.findByText(/sampleemail@gmail.com/i)).toBeInTheDocument()
     })
 
+    test('', () => {
+        const selectedMode = component.getByLabelText(/password/i)
+        fireEvent.change(selectedMode, { target: {value: "123456!@#$%ABCDEF"}})
+        expect(screen.findByText(/123456!@#$%ABCDE/i)).toBeTruthy()
+    })
+
+    test('', () => {
+        const selectedMode = component.getByLabelText(/confirm password/i)
+        fireEvent.change(selectedMode, { target: {value: "123456!@#$%ABCDEF"}})
+        expect(screen.findByText(/123456!@#$%ABCDE/i)).toBeTruthy()
+        expect(screen.findByText(/ABCDE!@#$-_^%123456/i)).toBeNull()
+    })
+
+
     test(`should render textbutton child component with name "sign up" `, () => {
-        const selectedMode = component.getAllByText('sign up/i')
+        const selectedMode = component.getByText('sign up/i')
+        fireEvent(selectedMode, new MouseEvent("click")) 
         expect(selectedMode).toBeInTheDocument()
     })
 
+    test(`should render textbutton child component with name "sign up" `, () => {
+        const selectedMode = component.getByText('login/i')
+        fireEvent(selectedMode, new MouseEvent("click")) 
+        expect(screen.getByRole("button")).toBeInTheDocument()
+    })
 })

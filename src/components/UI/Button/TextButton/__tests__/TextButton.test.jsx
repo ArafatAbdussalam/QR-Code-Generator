@@ -16,7 +16,7 @@ describe("TextButton component", () => {
 
     test(`should have class name of text button`, () => {
         const selectedMode = component.getByText(/mock button name/i)
-        expect(selectedMode).toHaveClass(/text-button/i)
+        expect(selectedMode).toHaveClass("text-button")
     })
 
     test(`should have type attribute of button`, () => {
@@ -26,14 +26,14 @@ describe("TextButton component", () => {
 
     test(`should render mock function when clicked once with mouse`, () => {
         const selectedMode = component.getByRole("button")
-        fireEvent.click(selectedMode)
-        expect(mockFunction).toHaveBenCalledWithTimes(1)
+        fireEvent(selectedMode, new MouseEvent("click")) 
+        expect(mockFunction).toHaveBenCalledTimes(1)
     })
 
     test(`should render mock function when pressed once with keyboard`, () => {
         const selectedMode = component.getByRole("button")
-        fireEvent.keyDown(selectedMode)
-        expect(mockFunction).toHaveBenCalledWithTimes(1)
+        fireEvent.keyDown(selectedMode, {key: 'Enter', code: 'Enter'})
+        expect(mockFunction).toHaveBenCalledTimes(1)
     })
 })
 

@@ -17,47 +17,45 @@ const QrInputField = (props) => {
     const inputValueRef = useRef()
 
 
-    const inputValueRefHandler = (fieldId) => {
-
-        // set the ref of the first input item to be on focus
-        // when the qr button is clicked
-
-        const firstInputItem = qrInputFieldItem.inputFieldValues[0]
-
-        if(firstInputItem.id === fieldId) {
-            return inputValueRef
-    
-            // return inputValueRef.focus
-
-        } 
-
-        if(firstInputItem.id !== fieldId) {
-            return; 
-        }
-    }
-
     const saveInputFieldHandler = async (inputValue) => {
 
         setFormValues(
             () => {
-                const values = [...formValues];
+                const values = formValues;
                 values.push(inputValue);
 
-                return (
+                // const map = new Map ()
+                // map.set("item", inputValue)
+
+                // // transform values array to object
+                // const mapValues = Object.assign({}, values)
+
+
+                return ( 
+                    // mapValues
                     values
-                );
+                )
             }
         )
     }
 
+    const valuesObject = formValues
+
+    // const inputValueRefHandler = (fieldId) => {
+
+    //     // set the ref of the first input item to be on focus
+    //     // when the qr button is clicked
+    // return inputValueRef.current.focus()
+    // }
 
 
     const qrCodeSubmitHandler = async (event) => {
         event.preventDefault()
 
+        inputValueRef.current.focus()
         console.log(formValues)
         onGenerateQrCode(formValues)
-
+ 
         // setButtonType("button")
         // setButtonText("Generated")
     }
@@ -66,7 +64,7 @@ const QrInputField = (props) => {
         (field) => {
             return (
                 <Input 
-                    ref = {inputValueRefHandler.bind(null, field.id)}
+                    ref = {inputValueRef}
                     key = {field.id}
                     label = {field.label} 
                     type = {field.type} 

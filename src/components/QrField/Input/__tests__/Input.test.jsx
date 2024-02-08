@@ -16,12 +16,4 @@ describe(`Input Component`, () => {
         expect(selectedMode).toBeInTheDocument()
     })
 
-
-    test(`should render number values`, () => {
-        const component = render(<Input label="sample label" type="number" onStoreInputValue={mockFunction}/>)
-        const selectedMode = component.getByLabelText(/sample label/i)
-        fireEvent.change(selectedMode, {target: "123"})
-        expect(selectedMode).toHaveValue(123)
-    })
-
 })

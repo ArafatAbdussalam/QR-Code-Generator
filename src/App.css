@@ -3,12 +3,14 @@
     list-style-type: none;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    font-family: Helvetica, sans-serif;
+    /* font-family: 'Butterfly Kids', cursive;
+    font-family: 'Cagliostro', sans-serif; */
+    font-family: 'Linden Hill', serif;
 }
 
 body {
     padding-top: 100px;
-    padding-bottom: 100px;
+    padding-bottom: 120px;
     background: linear-gradient( 63deg, #5fa8d3, #62b6cb );
 }
 

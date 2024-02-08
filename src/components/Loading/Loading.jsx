@@ -5,7 +5,7 @@ const Loading = () => {
     return(
         <>
             <div className="loading">
-                <h3 className= "qr-loading-heading">Qr Code Image is generating</h3>
+                <h3 className= "qr-loading-heading" aria-live="polite">Qr Code Image is generating</h3>
                 <div className="loading-items">
                     <span className="item"></span>
                     <span className="item"></span>

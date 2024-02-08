@@ -4,6 +4,7 @@ import '@testing-library/jest-dom'
 import QrTextButton from "../QrTextButton";
 
 
+
 const mockFunction = jest.fn()
 
 const mockFieldItems = [
@@ -31,17 +32,13 @@ describe(`QrTextButton Component`, () => {
 
     const component = render(<QrTextButton qrButtonFieldItem={mockFieldItems} onShowQrInputField={mockFunction} />)
 
-    test(`should render text button with name "wifi" `, () => {
+    test(`should render text button child component with name "wifi" `, () => {
         const selectedMode = component.getByText(/wifi/i)
         expect(selectedMode).toBeInTheDocument
-
     })
 
-    test(`should render text button child component`, () => {
-        expect(selectedMode).toBeTruthy()
-    })
-
-    test(`should render array of text buttons with length of "2" `, () => {
+    test(`should render array of text button child components with length of "2" `, () => {
+        const selectedMode = component.getAllByRole("button")
         expect(selectedMode).toHaveLength(2)
     })
     

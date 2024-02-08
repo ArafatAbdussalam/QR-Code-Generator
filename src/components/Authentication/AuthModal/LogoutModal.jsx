@@ -28,8 +28,8 @@ const LogoutModal = () => {
             <h3 className="auth-modal--main--heading">Do you want to logout?</h3>
 
             <div className="auth-modal--buttons">
-                <TextButton className="auth-modal--button" onClick={previousPageHandler} tabIndex = "10">No</TextButton>
-                <TextButton className="auth-modal--button" onClick={clickHandler} tabIndex="11">Yes</TextButton>
+                <TextButton className="auth-modal--button" onClick={clickHandler} tabIndex="10">Yes</TextButton>
+                <TextButton className="auth-modal--button" onClick={previousPageHandler} tabIndex = "11">No</TextButton>
             </div>
         </div>,
         document.getElementById("authPage")

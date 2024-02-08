@@ -19,17 +19,21 @@ describe(`SignupForm Component`, () => {
         expect(selectedMode).toBeInTheDocument()
     })
 
-    test(`should render label text with "Email" and "Password" `, () => {
-        const emailLabelText = component.getByLabelText(/email/i)
-        const passwordLabelText = component.getByLabelText(/password/i)
+    test('', () => {
+        const selectedMode = component.getByLabelText(/email/i)
+        fireEvent.change(selectedMode, { target: {value: "sampleemail@gmail.com"}})
+        expect(screen.findByText(/sampleemail@gmail.com/i)).toBeInTheDocument()
+    })
 
-        expect(emailLabelText).toBeInTheDocument()
-        expect(passwordLabelText).toBeInTheDocument()
+    test('', () => {
+        const selectedMode = component.getByLabelText(/password/i)
+        fireEvent.change(selectedMode, { target: {value: "123456!@#$%ABCDEF"}})
+        expect(screen.findByText(/123456!@#$%ABCDE/i)).toBeTruthy()
     })
 
     test(`should render textbutton child component with name "login" `, () => {
         const selectedMode = component.getByText(/login/i)
-        expect(selectedMode).toBeInTheDocument()
+        fireEvent(selectedMode, new MouseEvent("click")) 
     })
 
     test(`should render text to ask users if they have no account`, () => {
@@ -40,21 +44,13 @@ describe(`SignupForm Component`, () => {
     test(`should render link that redirects users to Signup page`, () => {
         // mock child component
         const selectedMode = component.getByRole("link", {name: "Sign up"})
-        expect(selectedMode).toBeInTheDocument()
-    })
-
-    test(`should not render error message if login attempt is successful`, () => {
-        // mock api
-    })
-
-    test(`should render error message if login attempt is not successful`, () => {
-        // mock api
+        fireEvent(selectedMode, new MouseEvent("click")) 
     })
 
     test(`should render cancel button`, () => {
         const selectedMode = component.getByRole("button", {name: /cancel/i})
-        // render function when clicked
-        expect(selectedMode).toBeInTheDocument()
+        fireEvent(selectedMode, new MouseEvent("click")) 
+        expect(screen.findByText(/login/i)).toBeNull()
     })
 
 })
