@@ -15,9 +15,11 @@ import SignupModal from "./AuthModal/SignupModal";
 
 
 // const username_regex = /^[a-zA-Z][a-zA-Z0-9-_]{4,23}$/;
-const email_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@]).{3,}$/;
-const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{7,25}$/;
+// const email_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@]).{3,}$/;
 
+const email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{7,25}$/;
+ 
 const signup_url = "/signup"
 
 const SignupForm = () => {

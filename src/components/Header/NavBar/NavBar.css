@@ -22,7 +22,6 @@
 } */
 
 .nav-items .logo-text {
-    font-family: 'Butterfly Kids', cursive;
     cursor: pointer;
     font-size: 30px;
     font-weight: 800;
@@ -30,6 +29,10 @@
 
 .nav-items .logo-text #qr-text {
     color: rgb(245, 98, 0);
+}
+
+.nav-items .logo-text #qr-text,  .nav-items .logo-text #code-text{
+    font-family: 'Schoolbell', cursive;
 }
 
 .nav-items .logo-text #bubble {

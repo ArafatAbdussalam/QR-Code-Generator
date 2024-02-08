@@ -1,5 +1,22 @@
 .about {
-    font-size: 35px;
+    text-align: left;
+    font-size: 28px;
     position: relative;
-    padding-left: 10px;
+    padding: 15px;
+    line-height: 1.5;
+    font-family: 'Flamenco', system-ui;
+}
+
+article:nth-child(1) {
+    margin-bottom: 30px;
+}
+
+article .step-text{
+    /* font-family: 'Cormorant Upright', serif; */
+    font-family: 'Schoolbell', cursive;
+    color: white;
+}
+
+article .qr-code--heading--text {
+    font-family: 'Schoolbell', cursive;
 }
