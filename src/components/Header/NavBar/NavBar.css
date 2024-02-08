@@ -15,11 +15,11 @@
     justify-content: space-between;
 }
 
-/* @media (max-width: 440px) {
-    .nav {}
-    .nav-items {}
-    .nav-item {}
-} */
+@media (max-width: 440px) {
+    .nav {
+        font-size: 16px;
+    }
+} 
 
 .nav-items .logo-text {
     cursor: pointer;
